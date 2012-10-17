@@ -1,0 +1,23 @@
+
+		<h1>Demo Page</h1>
+		<p>
+
+		<%= form_tag("home/searchPID", :method => "get") do %>
+		<span>Search by Patent ID:</span>
+		<input type="text" name="patentID">
+		<button id="submitID" type="submit">Send</button>
+		<% end %>
+
+		<%= form_tag("home/searchINV", :method => "get") do %>
+		<span>Search by Inventor:</span>
+		<input type="text" name="INV">
+		<button id="submitINV" type="submit">Send</button>
+		<% end %>
+
+		<%= form_tag("home/searchASS", :method => "get") do %>
+		<span>Search by Assignee:</span>
+		<input type="text" name="ASS">
+		<button id="submitASS" type="submit">Send</button>
+		<% end %>
+
+		<a class="btn btn-primary btn-large" onclick="alert('sorry, no one can help you~');">Help &raquo;</a></p>
