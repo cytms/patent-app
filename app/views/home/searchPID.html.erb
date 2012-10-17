@@ -1,0 +1,10 @@
+<h1>
+	Search by Patent ID
+</h1>
+
+<p>
+	<h3>Patent ID: <%= params[:patentID] %></h3>
+	<% @patent.each do |r| %>
+	<%= r.to_s %><br>
+	<% end %>
+</p>

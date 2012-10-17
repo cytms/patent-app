@@ -1,0 +1,10 @@
+<h1>
+	Search by Inventor
+</h1>
+
+<p>
+	<h3>Inventor: <%= params[:INV] %></h3>
+	<% @patentID.each do |r| %>
+	<%= r.to_s %><br>
+	<% end %>
+</p>
