@@ -1,9 +1,0 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
-
-one:
-  patent_id: MyString
-  examiner_id: MyString
-
-two:
-  patent_id: MyString
-  examiner_id: MyString

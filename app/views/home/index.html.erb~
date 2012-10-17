@@ -1,9 +1,0 @@
-<h1>Home#index</h1>
-<h1>Hello, Rails!</h1>
-<p>Find me in app/views/home/index.html.erb</p>
-<p><% require 'mysql2' %>
-<% db = Mysql2::Client.new(:host => '140.112.107.1', :username => 'chuya', :password=> '0514', :database => 'patentproject2012', :encoding => 'utf8') %>
-<% res = db.query("select * from `inventor_2007` limit 0,10") %>
-<% res.each do |r| %>
-<%  puts r %>
-<% end %><p>
