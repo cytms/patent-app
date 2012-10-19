@@ -26,12 +26,17 @@ def searchINV
   end
 
   def searchASS
-    @patentID = @db.query("select `Patent_id` from `assignee_2007` where `Assignee` like '%"+params[:ASS]+"%'")
-    @array = Array.new
-    @patentID.each do |p|
-      params[:patent] = @db.query("select `Patent_id`, `Abstract` from `patent_2007` where `Patent_id` = '"+p['Patent_id']+"'")
-      @array << params[:patent].to_a[0]
-    end
+    @patent = Array.new
+    @count = Array.new
+    (2007..2008).each{|i|
+      @patent = @db.query("select `Patent_id` from `assignee_" + i.to_s + "` where `Assignee` like '%" + params[:ASS] + "%'")
+      @count << @patent.size
+    }
+    #array = Array.new
+    #@patentID.each do |p|
+    #  params[:patent] = @db.query("select `Patent_id`, `Abstract` from `patent_2007` where `Patent_id` = '"+p['Patent_id']+"'")
+    #  @array << params[:patent].to_a[0]
+    #end
     #render :inline => "<% @array.each do |a| %><%= a.to_s %><% end %>"
   end
 
