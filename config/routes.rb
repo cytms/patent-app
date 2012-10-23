@@ -3,6 +3,9 @@ Test1::Application.routes.draw do
   get "/searchPID" => 'home#searchPID'
   get "/searchINV" => 'home#searchINV'
   get "/searchASS" => 'home#searchASS'
+
+  # the statistic graph
+  get "stat/inventor_bar" => 'stat#inventor_bar'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
