@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  before_filter :connect_db, :except =>[:index]
+  before_filter :connect_db#, :except =>[:index]
 
   def index  	
   	 #@res = @db.query("select * from `inventor_2007` limit 0,10")
@@ -32,6 +32,25 @@ def searchINV
       params[:patent] = @db.query("select `Patent_id`, `Abstract` from `patent_2007` where `Patent_id` = '"+p['Patent_id']+"'")
       @array << params[:patent].to_a[0]
     end
+    #render :inline => "<% @array.each do |a| %><%= a.to_s %><% end %>"
+  end
+
+  def searchCompany
+    #@possibleNames = @db.query("select `name` from `abbreviations` where `abbreviation` like '%"+params[:companyIn]+"%'")
+    @possibleNames = @db.query("select `name` from `abbreviations` where `abbreviation`='#{params[:companyIn]}'")
+    @results = Array.new
+    @possibleNames.each do |p|
+      @results << p['name']
+    end
+
+    #@json = @results.to_s
+    #@json = JSON.stringify( @possibleNames )
+    #@empls = JSON.parse(@json)
+    #pp @empls
+
+    render :text => @results
+
+
     #render :inline => "<% @array.each do |a| %><%= a.to_s %><% end %>"
   end
 
