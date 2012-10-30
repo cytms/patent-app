@@ -32,9 +32,10 @@
 		<div id="companySubmit">Search</div>
 		<div class="after">Are you looking for...</div>
 		<div class="after">
-			<%= form_tag("/analyzeCompany", :id => "possibleNames", :method => "get") do %>
-				<%= submit_tag("Search for these names!", :id => "analysisSubmit") %></br>
-			<% end %>
+			<% timezone = { '2007' => 2007, '2008' => 2008 } %>
+			<div>From: </div><%= select_tag("beginTime", options_for_select( timezone , 2007))%><br/>
+			<div>To:   </div><%= select_tag("endTime", options_for_select( timezone , 2007))%><br />
+			<div id="analysisSubmit">Search for these names!</div><br />
 		</div>
 
 

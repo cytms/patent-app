@@ -3,6 +3,7 @@ Test1::Application.routes.draw do
   get "/searchPID" => 'home#searchPID'
   get "/searchINV" => 'home#searchINV'
   get "/searchASS" => 'home#searchASS'
+  get "/searchCompany" => 'home#searchCompany'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

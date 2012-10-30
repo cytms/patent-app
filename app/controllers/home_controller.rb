@@ -41,22 +41,18 @@ def searchINV
   end
 
   def searchCompany
-    #@possibleNames = @db.query("select `name` from `abbreviations` where `abbreviation` like '%"+params[:companyIn]+"%'")
     @possibleNames = @db.query("select `name` from `abbreviations` where `abbreviation`='#{params[:companyIn]}'")
+    
     @results = Array.new
-    @possibleNames.each do |p|
-      @results << p['name']
+    if @possibleNames.to_a.empty? #if the :companyIn is not an abbreviation of a company, search for similar names
+      @results << params[:companyIn]
+    else  
+      @possibleNames.each do |p|
+        @results << p['name']
+      end
     end
-
-    #@json = @results.to_s
-    #@json = JSON.stringify( @possibleNames )
-    #@empls = JSON.parse(@json)
-    #pp @empls
-
     render :text => @results
 
-
-    #render :inline => "<% @array.each do |a| %><%= a.to_s %><% end %>"
   end
 
 private
