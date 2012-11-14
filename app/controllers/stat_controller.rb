@@ -1,36 +1,6 @@
 class StatController < ApplicationController
   before_filter :connect_db
 
-  def index
-    # input: params[:ASS]
-
-    # patentcounter_line -cytms
-    # render: integer @count
-    @assignee_name = 'Samsung'
-    @patent = Array.new
-    @counter = Array.new
-    (2007..2008).each{|i|
-      @patent = @db.query("select `Patent_id` from `assignee_" + i.to_s + "` where `Assignee` like '%" + 'Samsung' + "%'")
-      @counter << @patent.size
-    }
-
-    # inventor_bar -andikan
-    # output: string @query_result
-    
-    @result = @db.query("SELECT  `Assignee`, `Name`, COUNT( inventor_2007.Name )
-                               FROM  `assignee_2007` 
-                               LEFT JOIN  `inventor_2007` 
-                               USING ( Patent_id ) 
-                               WHERE assignee_2007.Assignee
-                               REGEXP  '#{@assignee_name}'
-                               GROUP BY inventor_2007.Name
-                               ORDER BY 3 DESC 
-                               LIMIT 0 , 30")
-    @query_result = @result.to_a
-
-
-  end
-  
   def inventor_bar
   	@assignee_name = 'Samsung'
     @result = @db.query("SELECT  `Assignee`, `Name`, COUNT( inventor_2007.Name )
