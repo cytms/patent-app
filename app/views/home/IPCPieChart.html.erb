@@ -1,0 +1,68 @@
+<h1>IPC Pie Chart</h1>
+<h3>Assignee: Kohler</h3>
+<!--<h3>Assignee: <%= params[:patentID] %></h3>-->
+
+<% @chartdata = @result[@layer].to_a.to_json %>
+
+<script type="text/javascript">
+$(function () {
+    var chart;
+    $(document).ready(function() {
+        
+        var Jstring = '<%= @chartdata %>';
+        var str = Jstring.replace(/&quot;/g, '\"');
+        var array = JSON.parse(str);
+        
+        chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'container',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: 'Patent Distribution (by IPC)'
+            },
+            tooltip: {
+        	    pointFormat: '{series.name}: <b>{point.y}</b>',
+            	percentageDecimals: 1
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        color: '#000000',
+                        connectorColor: '#000000',
+                        formatter: function() {
+                            return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
+                        }
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'Number of patents:',
+                data: array
+            }]
+        });
+    });
+    
+});
+</script>
+<div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+
+<% if @layer < 4 %>
+<% flash[:result] = @result %>
+<%= link_to 'Zoom In', {:controller => "home", :action => "IPCPieChart", :layer => @layer + 1 } %>
+<% end %>
+<br>
+<% if @layer > 0 %>
+<% flash[:result] = @result %>
+<%= link_to 'Zoom Out', {:controller => "home", :action => "IPCPieChart", :layer => @layer - 1 } %>
+<% end %>
+
+<!--<%= @result %><br>-->
+<!--<%= @chartdata %><br>-->
+<!--<%= @layer %><br>-->
