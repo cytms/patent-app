@@ -7,8 +7,8 @@ $(function () {
     var chart;
     
     $(document).ready(function() {
-		var array = JSON.parse('<%= @count %>');
-		var company = '<%= params[:companyIn] %>';
+        var array = JSON.parse('<%= @count %>');
+        var company = '<%= params[:ASS] %>';
         chart = new Highcharts.Chart({
             chart: {
                 renderTo: 'container',
@@ -17,7 +17,7 @@ $(function () {
                 marginBottom: 25
             },
             title: {
-                text: 'Number of Patents per Year',
+                text: 'Company Number of Patents per Year',
                 x: -20 //center
             },
             subtitle: {
@@ -64,15 +64,15 @@ $(function () {
 
 
 <!--
-	<script src="http://code.highcharts.com/highcharts.js"></script>
-	<script src="http://code.highcharts.com/modules/exporting.js"></script> -->
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="http://code.highcharts.com/modules/exporting.js"></script> -->
 <div class="page-header">
-    <h3>Counter -line chart <small>search by assignee</small></h3>
+    <h3>numbers of patent <small>search by assignee</small></h3>
 </div>
 
 <div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
 <div class="page-header">
-    <h3>Inventor -bar chart<small>search by assignee</small></h3>
+    <h3>inventor bar<small>search by assignee</small></h3>
 </div>
 <div calss="row">
     <div class="span3">
@@ -98,7 +98,7 @@ $(document).ready(function() {
             text: 'Inventor bar'
         },
         subtitle: {
-            text: '<%= params[:companyIn] %>'
+            text: 'Samsung'
         },
         xAxis: {
             title: {

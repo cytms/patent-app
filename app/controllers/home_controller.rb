@@ -26,12 +26,25 @@ def searchINV
   end
 
   def searchASS
+    @assignee_name = params[:companyIn]
     @patent = Array.new
     @count = Array.new
     (2007..2008).each{|i|
-      @patent = @db.query("select `Patent_id` from `assignee_" + i.to_s + "` where `Assignee` like '%" + params[:ASS] + "%'")
+      @patent = @db.query("select `Patent_id` from `assignee_" + i.to_s + "` where `Assignee` like '%" + @assignee_name.to_s + "%'")
       @count << @patent.size
     }
+
+
+    @result = @db.query("SELECT  `Assignee`, `Name`, COUNT( inventor_2007.Name )
+                               FROM  `assignee_2007` 
+                               LEFT JOIN  `inventor_2007` 
+                               USING ( Patent_id ) 
+                               WHERE assignee_2007.Assignee
+                               REGEXP  '#{@assignee_name}'
+                               GROUP BY inventor_2007.Name
+                               ORDER BY 3 DESC 
+                               LIMIT 0 , 30")
+    @query_result = @result.to_a
     #array = Array.new
     #@patentID.each do |p|
     #  params[:patent] = @db.query("select `Patent_id`, `Abstract` from `patent_2007` where `Patent_id` = '"+p['Patent_id']+"'")
