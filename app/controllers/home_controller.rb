@@ -43,7 +43,7 @@ def searchINV
                                REGEXP  '#{@assignee_name}'
                                GROUP BY inventor_2007.Name
                                ORDER BY 3 DESC 
-                               LIMIT 0 , 30")
+                               LIMIT 0d , 30")
     @query_result = @result.to_a
     #array = Array.new
     #@patentID.each do |p|
