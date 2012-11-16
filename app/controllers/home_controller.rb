@@ -68,6 +68,66 @@ def searchINV
 
   end
 
+def IPCPieChart
+  # NUMBER CHECK
+  if params[:layer].nil? == true
+    params[:layer] = 0
+    @layer = params[:layer]
+  else
+    @layer = params[:layer].to_i
+  end
+
+  if @layer == 0
+    #@patentID = @db.query("select `Patent_id` from `ipc_2007` limit 0,8")
+    @patentID = @db.query("select `Patent_id` from `assignee_2007` where `Assignee` like '%Kohler%' limit 0,7")
+    #@patentID = @db.query("select `Patent_id` from `assignee_2007` where `Assignee` like '%"+params[:ASS]+"%'")
+    @array = Array.new
+    
+    @patentID.each do |p|
+      params[:patent] = @db.query("select * from `ipc_2007` where `Patent_id` = '"+p['Patent_id']+"'")
+      $k = params[:patent].to_a.length
+      for i in 0..$k-1
+        if params[:patent].to_a[i]['IPC_class'][0] =~ /\D/
+          @array.push( params[:patent].to_a[i] )
+        end
+      end
+    end
+
+    @arraySorted = @array.sort! { |x,y| x["IPC_class"] <=> y["IPC_class"] }
+
+    @array_hash = Array.new
+    for j in 0..4
+      @array_hash[j] = Hash.new
+    end
+
+    $k = @arraySorted.length
+    
+    for i in 0..$k-1
+      # splitting IPC into 5 segments
+      iPCchar_array = Array.new
+      a = @arraySorted[i]["IPC_class"].to_s
+      for n in [0,2,3]
+        iPCchar_array << a[0..n]
+      end
+      iPCchar_array << a.partition(/\//)[0] + "/00"
+      iPCchar_array << a
+
+      for j in 0..4
+        if @array_hash[j].has_key?(iPCchar_array[j]) == true
+          @array_hash[j][iPCchar_array[j]] += 1
+        else
+          @array_hash[j].store(iPCchar_array[j], 1)
+        end
+      end
+    end
+    
+    @result = @array_hash
+
+  else
+    @result = flash[:result]
+  end
+end
+
 private
 	def connect_db
 		@db = Mysql2::Client.new(:host => '140.112.107.1', :username => 'chuya', :password=> '0514', :database => 'patentproject2012', :encoding => 'utf8')
