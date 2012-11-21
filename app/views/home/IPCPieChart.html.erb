@@ -1,5 +1,5 @@
 <h1>IPC Pie Chart</h1>
-<h3>Assignee: Kohler</h3>
+<!--<h3>Assignee: Kohler</h3>-->
 <!--<h3>Assignee: <%= params[:patentID] %></h3>-->
 
 <% @chartdata = @result[@layer].to_a.to_json %>
@@ -54,15 +54,15 @@ $(function () {
 <div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
 
 <% if @layer < 4 %>
-<% flash[:result] = @result %>
+<% session[:result] = @result %>
 <%= link_to 'Zoom In', {:controller => "home", :action => "IPCPieChart", :layer => @layer + 1 } %>
 <% end %>
 <br>
 <% if @layer > 0 %>
-<% flash[:result] = @result %>
+<% session[:result] = @result %>
 <%= link_to 'Zoom Out', {:controller => "home", :action => "IPCPieChart", :layer => @layer - 1 } %>
 <% end %>
 
-<!--<%= @result %><br>-->
+<%= @result %><br>
 <!--<%= @chartdata %><br>-->
-<!--<%= @layer %><br>-->
+<%= @layer %><br>
