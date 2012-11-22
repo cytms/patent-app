@@ -1,0 +1,91 @@
+<div class="page-header">
+	<h3>Statistics <small>inventor bar</small></h3>
+</div>
+<div calss="row">
+	<div class="span3">
+	<% @query_result.each do |q|%>
+		<p><%= q['Name']%> : <%= q['COUNT( inventor_2007.Name )']%></p>
+	<% end %>
+	</div>
+	<div class="span8">
+		<div id="inventor_bar" style="min-width: 600px; height: 400px; margin: 0 auto">
+		</div>
+	</div>
+</div><!-- end of row -->
+
+<script type="text/javascript">
+var chart;
+$(document).ready(function() {
+    chart = new Highcharts.Chart({
+        chart: {
+            renderTo: 'inventor_bar',
+            type: 'column'
+        },
+        title: {
+            text: 'Inventor bar'
+        },
+        subtitle: {
+            text: '<%= @assignee_name %>'
+        },
+        xAxis: {
+            title: {
+                text: 'name'
+            },
+            categories: [
+            <% (0..@query_result.count-1).each do |i| %>
+            	<% if i == @query_result.count-1 %>
+            	'<%= @query_result[i]['Name'].to_s %>'
+            	<% else %>
+            	'<%= @query_result[i]['Name'].to_s %>',
+            	<% end %>
+            <% end %>
+            ],
+            labels: {
+            	rotation: -60,
+                align: 'right'
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'count'
+            }
+        },
+        legend: {
+            layout: 'vertical',
+            backgroundColor: '#FFFFFF',
+            align: 'left',
+            verticalAlign: 'top',
+            x: 100,
+            y: 70,
+            floating: true,
+            shadow: true
+        },
+        tooltip: {
+            formatter: function() {
+                return ''+
+                    this.x +': '+ this.y +' mm';
+            }
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'Inventor',
+            data: [
+            <% (0..@query_result.count-1).each do |i| %>
+            	<% if i == @query_result.count-1 %>
+            	<%= @query_result[i]['COUNT( inventor_2007.Name )'] %>]
+            	<% else %>
+            	<%= @query_result[i]['COUNT( inventor_2007.Name )'] %>,
+            	<% end %>
+            <% end %>            
+        }]
+    });
+});   
+</script>
+
+

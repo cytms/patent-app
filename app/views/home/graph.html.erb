@@ -1,0 +1,12 @@
+<!-- graph.html.erb -->
+
+<div id="countLineChart"></div>
+<div id="inventorBarChart"></div>
+<div id="IPCPieChart"></div>
+
+<% content_for :javascript do %>
+	<%= javascript_include_tag "graph/countLineChart" %>
+	<%= javascript_include_tag "graph/inventorBarChart" %>
+	<%= javascript_include_tag "highcharts" %>
+	<%= javascript_include_tag "modules/exporting" %>
+<% end %>

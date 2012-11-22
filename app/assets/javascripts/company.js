@@ -13,7 +13,8 @@ $("#companySubmit").click(function(){
 			//console.log(total);
 			while( i < total )
 			{
-				$("#analysisSubmit").before( '<input class="aName" type="checkbox" name="aname" value="' + arrayObj[i] + '">' + arrayObj[i] + '</input></br>');
+				var str =  arrayObj[i];
+				$("#analysisSubmit").before( '<input class="aName" type="checkbox" name="Assignee" value="' + arrayObj[i] + '">' + arrayObj[i] + '</input></br>');
 				i += 1;
 			}
 		},

@@ -1,12 +1,19 @@
 class HomeController < ApplicationController
-  before_filter :connect_db#, :except =>[:index]
+  before_filter :connect_db #, :except =>[:index]
 
-  def index  	
-  	 #@res = @db.query("select * from `inventor_2007` limit 0,10")
+  def index
+
+  	#@res = @db.query("select * from `inventor_2007` limit 0,10")
     #params[:test] = 'D558365'
     #@res = @db.query("select * from `patent_2007` where `Patent_id` = '"+params[:test]+"'")
   end
 
+  def graph
+    $graph_companyIn = params[:companyIn].to_s
+    $graph_beginTime = params[:beginTime].to_i
+    $graph_endTime = params[:endTime].to_i
+  end
+  
   def searchPID
   	#render :text => "OK!!!!!!!!!!!!"
     @patent = @db.query("select * from `patent_2007` where `Patent_id` = '"+params[:patentID]+"'")
@@ -34,23 +41,6 @@ def searchINV
       @count << @patent.size
     }
 
-
-    @result = @db.query("SELECT  `Assignee`, `Name`, COUNT( inventor_2007.Name )
-                               FROM  `assignee_2007` 
-                               LEFT JOIN  `inventor_2007` 
-                               USING ( Patent_id ) 
-                               WHERE assignee_2007.Assignee
-                               REGEXP  '#{@assignee_name}'
-                               GROUP BY inventor_2007.Name
-                               ORDER BY 3 DESC 
-                               LIMIT 0d , 30")
-    @query_result = @result.to_a
-    #array = Array.new
-    #@patentID.each do |p|
-    #  params[:patent] = @db.query("select `Patent_id`, `Abstract` from `patent_2007` where `Patent_id` = '"+p['Patent_id']+"'")
-    #  @array << params[:patent].to_a[0]
-    #end
-    #render :inline => "<% @array.each do |a| %><%= a.to_s %><% end %>"
   end
 
   def searchCompany
@@ -79,7 +69,7 @@ def IPCPieChart
 
   if @layer == 0
     #@patentID = @db.query("select `Patent_id` from `ipc_2007` limit 0,8")
-    @patentID = @db.query("select `Patent_id` from `assignee_2007` where `Assignee` like '%Kohler%' limit 0,7")
+    @patentID = @db.query("select `Patent_id` from `assignee_2007` where `Assignee` like '%Samsung%'")
     #@patentID = @db.query("select `Patent_id` from `assignee_2007` where `Assignee` like '%"+params[:ASS]+"%'")
     @array = Array.new
     
