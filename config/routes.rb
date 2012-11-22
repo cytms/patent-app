@@ -1,12 +1,14 @@
 Test1::Application.routes.draw do
   get '/' => 'home#index'
-  get "/searchPID" => 'home#searchPID'
-  get "/searchINV" => 'home#searchINV'
   get "/searchASS" => 'home#searchASS'
   # abbreviation -> selectable full company names
   get "/searchCompany" => 'home#searchCompany'
   # the statistic graph
   get "stat/inventor_bar" => 'stat#inventor_bar'
+  # search
+  get "search_index.html.erb" => 'stat#search_index'
+  get "/searchPID" => 'stat#searchPID'
+  get "/searchINV" => 'stat#searchINV'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
