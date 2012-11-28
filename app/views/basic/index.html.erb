@@ -1,0 +1,13 @@
+<h3><i class="icon-search"></i> Basic Search </h3>
+
+<%= form_tag("basic/searchPID", :method => "get") do %>
+	<span>Search by Patent ID:</span>
+	<input type="text" name="patentID">
+	<button id="submitID" type="submit">Send</button>
+<% end %>
+
+<%= form_tag("basic/searchINV", :method => "get") do %>
+	<span>Search by Inventor:</span>
+	<input type="text" name="INV">
+	<button id="submitINV" type="submit">Send</button>
+<% end %>

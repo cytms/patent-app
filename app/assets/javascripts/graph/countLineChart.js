@@ -2,7 +2,7 @@
 $(document).ready(function(){
 	$.ajax({
 		type : "GET", 
-		url  : "../graph/countLineChart",
+		url  : "/statistics/countLineChart",
 		dataType : 'html',
 		success : function(countLineChartHtml){
 			$('#countLineChart').html(countLineChartHtml);

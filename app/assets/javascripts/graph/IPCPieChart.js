@@ -1,7 +1,7 @@
 /* IPCPieChart.js */
 $.ajax({
 	type : "GET", 
-	url  : "../graph/IPCPieChart",
+	url  : "/statistics/IPCPieChart",
 	dataType : 'html',
 	success : function(IPCPieChartHtml){
 		$('#IPCPieChart').html(IPCPieChartHtml);

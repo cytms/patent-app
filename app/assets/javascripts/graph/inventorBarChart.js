@@ -2,7 +2,7 @@
 $(document).ready(function(){
 	$.ajax({
 		type : "GET", 
-		url  : "../graph/inventorBarChart",
+		url  : "/statistics/inventorBarChart",
 		dataType : 'html',
 		success : function(inventorBarChartHtml){
 			alert("hello");

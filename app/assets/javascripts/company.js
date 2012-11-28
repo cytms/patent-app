@@ -2,21 +2,25 @@ $("#companySubmit").click(function(){
 	//console.log("pass "+ $("#companyIn").val());
 	$.ajax({
 		type : "GET", 
-		url  : "/searchCompany",
+		url  : "/statistics/searchCompany",
 		data : { companyIn : $("#companyIn").val() },
 		dataType : 'text',
 		success : function( results ){
 			var arrayObj = JSON.parse(results);
-			$('.after').css('display', 'block');
+			$('#nameSet').css('display', 'block');
 			var total = arrayObj.length;
 			var i = 0;
 			//console.log(total);
+			var optionResult = "";
 			while( i < total )
 			{
 				var str =  arrayObj[i];
-				$("#analysisSubmit").before( '<input class="aName" type="checkbox" name="Assignee" value="' + arrayObj[i] + '">' + arrayObj[i] + '</input></br>');
+				var tmp = '<input class="aName" type="checkbox" name="Assignee" value="' + arrayObj[i] + '">' + arrayObj[i] + '</input></br>';
+				optionResult += tmp;
 				i += 1;
 			}
+			//alert(optionResult);
+			$("#nameSet").html(optionResult);
 		},
 		error : function(){
 			//console.log( 'something wrong happened' );
@@ -26,7 +30,7 @@ $("#companySubmit").click(function(){
 	});
 });
 
-
+/*
 $("#analysisSubmit").click(function() {
 	var a = $("endTime").attr("value");
 	var b = $("beginTime").attr("value");
@@ -45,24 +49,7 @@ $("#analysisSubmit").click(function() {
 		for( var i = $("#beginTime").attr("value"); i <= $("#endTime").attr("value"); i++ ){
 			list["Time"].push(i);
 		}
-
-	/*
-		$.ajax({
-			type : "GET",
-			url  : "/editfriend",
-			data : { editfriend : list },
-			dataType: 'text',
-			success : function(friendlist){
-				console.log("recall:"+ friendlist );
-				console.log('searching ');
-			},
-			error : function(){
-				console.log( 'something wrong happened' );
-			}
-		}).done(function(){
-				console.log("complete!");
-		});
-	*/
 		console.log("submit: " + list["Assignee"] + list["Time"]);
 	}
 });
+*/

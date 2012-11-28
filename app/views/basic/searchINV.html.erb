@@ -1,0 +1,13 @@
+<h3><i class="icon-search"></i> Basic Search </h3>
+
+<p>
+	<h4>Search by Inventor = "<%= params[:INV]%>"</h4>
+	<% (2007..2008).each { |i| %>
+     		<% if @patentID[i].to_a.empty? == false %>
+     			<% @patentID[i].to_a.each do |p| %>
+     				<span><b>Patent ID: </b><%= p['Patent_id'].to_s %></span>
+				<%= link_to 'Details', {:controller => "basic", :action => "searchPID", :patentID => p['Patent_id'].to_s } %><br>
+     			<% end %>
+		<% end %>
+     <% } %>
+</p>

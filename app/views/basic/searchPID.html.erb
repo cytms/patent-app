@@ -1,0 +1,18 @@
+<h3><i class="icon-search"></i> Basic Search </h3>
+
+<p>
+	<h4>Search by Patent ID = "<%= params[:patentID]%>"</h4>
+
+     <% (2003..2008).each { |i| %>
+     <% if @patent[i].to_a.empty? == false %>
+     <span><b>Patent ID: </b><%= @patent[i].to_a[0]["Patent_id"].to_s %></span><br>
+	<span><b>Title: </b><%= @patent[i].to_a[0]["Title"].to_s %></span><br>
+	<span><b>Issued Date: </b><%= @patent[i].to_a[0]["Issued_date"].to_s %></span><br>
+	<span><b>Filed Date: </b><%= @patent[i].to_a[0]["Filed_Date"].to_s %></span><br><br>
+	<span><b>Abstract: </b><%= @patent[i].to_a[0]["Abstract"].to_s %></span><br><br>
+	<span><b>Claims: </b><%= @patent[i].to_a[0]["Claims"].to_s %></span><br><br>
+	<span><b>Summary: </b><%= @patent[i].to_a[0]["Summary"].to_s %></span><br>
+	<% end %>
+     <% } %>
+ 
+</p>

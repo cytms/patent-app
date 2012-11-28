@@ -1,0 +1,15 @@
+<h3><i class="icon-bar-chart"></i> Statistics </h3>
+<p>
+<%= form_tag("/statistics/graph", :method => "get") do %> 
+<input type="text" name="companyIn" id="companyIn">
+<div id="companySubmit" class="btn"><i class="icon-globe"></i> Search for more <br /> possible companies </div>
+<div id="nameSet"><br /></div>
+<!--div id="analysisSubmit">Search for these names!</div><br /-->
+<% timezone = { '2007' => 2007, '2008' => 2008 } %>
+<div>From: </div><%= select_tag("beginTime", options_for_select( timezone , 2007))%><br/>
+<div>To:   </div><%= select_tag("endTime", options_for_select( timezone , 2007))%><br />
+<button class="btn" id="submitASS" type="submit"><i class="icon-magic"></i> Send </button>
+<% end %>
+<a class="btn btn-primary btn-large" onclick="alert('sorry, no one can help you~');"><i class="icon-heart"></i> Help </a></p>
+
+<%= javascript_include_tag "company" %>
