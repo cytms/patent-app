@@ -28,6 +28,10 @@ class StatisticsController < ApplicationController
     end
     render :text => @results
   end
+  
+  def patentList
+  	# alice
+  end
 
   def countLineChart
   	# edited by cytms
