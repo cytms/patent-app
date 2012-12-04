@@ -9,6 +9,7 @@ $(document).ready(function(){
 		},
 		error : function(){
 			console.log('something wrong happened');
+			alert("oops");
 		}
 	}).done(function(){
 		console.log("ending");

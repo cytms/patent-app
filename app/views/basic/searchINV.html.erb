@@ -5,8 +5,9 @@
 	<% (2007..2008).each { |i| %>
      		<% if @patentID[i].to_a.empty? == false %>
      			<% @patentID[i].to_a.each do |p| %>
-     				<span><b>Patent ID: </b><%= p['Patent_id'].to_s %></span>
-				<%= link_to 'Details', {:controller => "basic", :action => "searchPID", :patentID => p['Patent_id'].to_s } %><br>
+     				<span><b>Patent ID: </b><%= p['Patent_id'].to_s %></span><br>
+     				<span><b>Title: </b><%= p['Title'].to_s %></span><br>
+				<%= link_to 'Details', {:controller => "basic", :action => "searchPID", :patentID => p['Patent_id'].to_s } %><br><br>
      			<% end %>
 		<% end %>
      <% } %>

@@ -1,1 +1,31 @@
 <!--patentList.html.erb-->
+<div class="page-header">
+    <h3>Patent List<small> search by assignee</small></h3>
+</div>
+
+<p>
+<table>
+	<tr>
+		<td><b>Patent ID</b></td>
+		<td><b>Title</b></td>
+		<td><b>Inventor</b></td>
+		<td><b>Issued Date</b></td>
+	</tr>
+	<% (@start_year..@end_year).each { |i| %>
+     		<% if @patent[i].to_a.empty? == false %>
+     			<% @patent[i].to_a.each do |p| %>
+     				<%  if p['Patent_id'].to_s[0] =~ /\d/ %>
+     				<tr>
+     				<td><%= p['Patent_id'].to_s %></td>
+     				<td><%= p['Title'].to_s %></td>
+     				<td><%= p['Name'].to_s %></td>
+     				<td><%= p['Issued_date'].to_s %></td>
+				<td><%= link_to 'Details', {:controller => "basic", :action => "searchPID", :patentID => p['Patent_id'].to_s } %></td>
+				</tr>
+				<% end %>
+     			<% end %>
+		<% end %>
+     <% } %>
+
+ </table>
+</p>

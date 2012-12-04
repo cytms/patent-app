@@ -25,8 +25,10 @@ class BasicController < ApplicationController
     count = temp.length
 
     (2007..2008).each { |i|
-    @patentID[i] = @db.query("SELECT `Patent_id`
-                                  FROM `inventor_" + i.to_s + "` 
+    @patentID[i] = @db.query("SELECT `Patent_id`, `Title`
+                                  FROM `inventor_" + i.to_s + "`
+                                  LEFT JOIN `patent_" + i.to_s + "`
+                                  USING ( Patent_id )  
                                   WHERE (inventor_" + i.to_s + ".Name LIKE '%#{temp[0]}%') AND
                                           (inventor_" + i.to_s + ".Name LIKE '%#{temp[1]}%') AND
                                           (inventor_" + i.to_s + ".Name LIKE '%#{temp[2]}%')")
