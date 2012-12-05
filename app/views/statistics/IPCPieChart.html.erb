@@ -1,21 +1,20 @@
-<h1>IPC Pie Chart</h1>
-<!--<h3>Assignee: Kohler</h3>-->
-<!--<h3>Assignee: <%= params[:patentID] %></h3>-->
-
-<% @chartdata = @result[@layer].to_a.to_json %>
+<div class="page-header">
+    <h3>IPC Pie Chart<small> search by assignee</small></h3>
+</div>
 
 <script type="text/javascript">
-$(function () {
+function pie(chartData, level) {
     var chart;
-    $(document).ready(function() {
-        
-        var Jstring = '<%= @chartdata %>';
-        var str = Jstring.replace(/&quot;/g, '\"');
-        var array = JSON.parse(str);
-        
+    var str = chartData[level].replace(/&quot;/g, '\"');
+    var array = JSON.parse(str);
+    
+    $(document).ready(function() {        
+        temp = '<div id="containerIPC" style="min-width: 400px; height: 400px; margin: 0 auto"></div>';
+        $( "#empty" ).before(temp);
+
         chart = new Highcharts.Chart({
             chart: {
-                renderTo: 'container',
+                renderTo: 'containerIPC',
                 plotBackgroundColor: null,
                 plotBorderWidth: null,
                 plotShadow: false
@@ -24,8 +23,8 @@ $(function () {
                 text: 'Patent Distribution (by IPC)'
             },
             tooltip: {
-        	    pointFormat: '{series.name}: <b>{point.y}</b>',
-            	percentageDecimals: 1
+                pointFormat: '{series.name}: <b>{point.y}</b>',
+                percentageDecimals: 1
             },
             plotOptions: {
                 pie: {
@@ -49,20 +48,58 @@ $(function () {
         });
     });
     
+    if ( level == 4 ){
+        $( "#in" ).css("visibility", "hidden");
+        //$( "#in" ).remove();
+        flagIN = false;
+    }
+    else if ( level == 3 && flagIN == false){
+        $( "#in" ).css("visibility", "visible");
+        //$( "#empty" ).after('<button id="in">Zoom in</button>');
+        flagIN = true;
+    }
+
+    if ( level == 0 ){
+        $( "#out" ).remove();
+        flagOUT = true;
+    }
+    else if ( level == 1 && flagOUT == true){
+        $( "#in" ).after('<button id="out">Zoom out</button>');
+        flagOUT = false;
+    }
+    
+};
+
+var level = 0;
+var chartData = new Array();
+var flagIN = true;
+var flagOUT = true;
+
+chartData[0] = '<%= @result[0] %>';
+chartData[1] = '<%= @result[1] %>';
+chartData[2] = '<%= @result[2] %>';
+chartData[3] = '<%= @result[3] %>';
+chartData[4] = '<%= @result[4] %>';
+
+pie( chartData, level );
+
+$( "#in" ).live("click",function() {
+   $( "#containerIPC" ).remove();
+   level = level + 1;
+   pie( chartData, level );
 });
+
+$( "#out" ).live("click",function() {
+   $( "#containerIPC" ).remove();
+   level = level - 1;
+   pie( chartData, level );
+});
+
 </script>
-<div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
 
-<% if @layer < 4 %>
-<% session[:result] = @result %>
-<%= link_to 'Zoom In', {:controller => "home", :action => "IPCPieChart", :layer => @layer + 1 } %>
-<% end %>
-<br>
-<% if @layer > 0 %>
-<% session[:result] = @result %>
-<%= link_to 'Zoom Out', {:controller => "home", :action => "IPCPieChart", :layer => @layer - 1 } %>
-<% end %>
-
-<%= @result %><br>
+<div id="empty"></div>
+<button id="in">Zoom in</button>
+<div>Learn more about <a href="http://www.wipo.int/classifications/ipc/">International Patent Classification (IPC)</a></div>
+<!--<%= @result %><br>-->
 <!--<%= @chartdata %><br>-->
-<%= @layer %><br>
+<!--<%= @iPC_data %><br>-->

@@ -5,7 +5,7 @@ $(document).ready(function(){
 		url  : "/statistics/inventorBarChart",
 		dataType : 'html',
 		success : function(inventorBarChartHtml){
-			alert("hello");
+			//alert("hello");
 			$('#inventorBarChart').html(inventorBarChartHtml);
 
 		},

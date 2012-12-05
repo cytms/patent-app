@@ -31,6 +31,20 @@ class StatisticsController < ApplicationController
   
   def patentList
   	# alice
+    @assignee_name = $graph_companyIn
+    @start_year = $graph_beginTime
+    @end_year = $graph_endTime
+
+    @patent = Array.new
+    (@start_year..@end_year).each{ |i|
+      @patent[i] = @db.query("SELECT `Patent_id`, `Title`, `Name`, `Issued_date`
+                              FROM `assignee_" + i.to_s + "`
+                              LEFT JOIN `patent_" + i.to_s + "`
+                              USING ( Patent_id ) 
+                              LEFT JOIN `inventor_" + i.to_s + "`
+                              USING ( Patent_id )  
+                              WHERE `Assignee` LIKE '%" + @assignee_name.to_s + "%'")
+    }
   end
 
   def countLineChart
@@ -64,27 +78,28 @@ class StatisticsController < ApplicationController
   end
 
   def IPCPieChart
-  	# NUMBER CHECK
-	if params[:layer].nil? == true
-	params[:layer] = 0
-	@layer = params[:layer]
-	else
-	@layer = params[:layer].to_i
-	end
+  @assignee_name = $graph_companyIn
+  @start_year = $graph_beginTime
+  @end_year = $graph_endTime
+  @iPC_data = Array.new
+  temp = Array.new
+  @arraySorted = Array.new
+  
+  (@start_year..@end_year).each{ |i|
+      @iPC_data = @db.query("SELECT  `Patent_id`, `IPC_class`
+                                  FROM  `assignee_" + i.to_s + "` 
+                                  LEFT JOIN  `ipc_" + i.to_s + "` 
+                                  USING ( Patent_id ) 
+                                  WHERE assignee_" + i.to_s + ".Assignee
+                                  REGEXP  '#{@assignee_name}'
+                                  ORDER BY 2 ASC")
+      @arraySorted = (temp << @iPC_data.to_a).flatten
+  }
 
-	if @layer == 0
+  #@arraySorted = @iPC_data.to_a
 
-	@assignee_name = "Kohler"
-	@iPC_data = @db.query("SELECT  `Patent_id`, `IPC_class`
-	                           FROM  `assignee_2007` 
-	                           LEFT JOIN  `ipc_2007` 
-	                           USING ( Patent_id ) 
-	                           WHERE assignee_2007.Assignee
-	                           REGEXP  '#{@assignee_name}'
-	                           ORDER BY 2 ASC")
-	@arraySorted = @iPC_data.to_a
-
-	@array_hash = Array.new
+  @result = Array.new
+  @array_hash = Array.new
 	for j in 0..4
 	  @array_hash[j] = Hash.new
 	end
@@ -108,17 +123,11 @@ class StatisticsController < ApplicationController
 	      else
 	        @array_hash[j].store(iPCchar_array[j], 1)
 	      end
-	    end
-	  end
-
-	end
-
-	@result = @array_hash
-
-	else
-	@result = session[:result]
-	end
-  end
+         @result[j] = @array_hash[j].to_a.to_json
+	    end #end for
+	  end #end if
+  end #end for
+end
 
   private
   def connect_db

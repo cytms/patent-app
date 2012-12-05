@@ -1,7 +1,7 @@
 <div class="page-header">
 	<h3>Statistics <small>inventor bar</small></h3>
 </div>
-<div calss="row">
+<div class="row">
 	<div class="span3">
 	<% @query_result.each do |q|%>
 		<p><%= q['Name']%> : <%= q['COUNT( inventor_2007.Name )']%></p>
