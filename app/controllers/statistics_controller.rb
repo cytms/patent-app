@@ -37,13 +37,14 @@ class StatisticsController < ApplicationController
 
     @patent = Array.new
     (@start_year..@end_year).each{ |i|
-      @patent[i] = @db.query("SELECT `Patent_id`, `Title`, `Name`, `Issued_date`
+      @patent[i] = @db.query("SELECT `Patent_id`, `Title`, `Issued_date`, GROUP_CONCAT(Name) AS `Name`                              
                               FROM `assignee_" + i.to_s + "`
                               LEFT JOIN `patent_" + i.to_s + "`
                               USING ( Patent_id ) 
                               LEFT JOIN `inventor_" + i.to_s + "`
                               USING ( Patent_id )  
-                              WHERE `Assignee` LIKE '%" + @assignee_name.to_s + "%'")
+                              WHERE `Assignee` LIKE '%" + @assignee_name.to_s + "%'
+                              GROUP BY Patent_id")
     }
   end
 
