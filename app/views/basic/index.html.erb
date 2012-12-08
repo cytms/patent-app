@@ -1,13 +1,24 @@
 <h3><i class="icon-search"></i> Basic Search </h3>
+<div class="tabbable">
+	<ul class="nav nav-tabs">
+		<li class="active"><a href="#tab1" data-toggle="tab">Assignee</a></li>
+		<li><a href="#tab2" data-toggle="tab">Patent</a></li>
+	</ul>
+	<div class="tab-content">
+		<div class="tab-pane active" id="tab1">
+	      	<%= form_tag("basic/searchPID", :method => "get") do %>
+				<span>Search by Patent ID:</span>
+				<input type="text" name="patentID">
+				<button id="submitID" type="submit">Send</button>
+			<% end %>
+	    </div>
+	    <div class="tab-pane" id="tab2">
+	    	<%= form_tag("basic/searchINV", :method => "get") do %>
+				<span>Search by Inventor:</span>
+				<input type="text" name="INV">
+				<button id="submitINV" type="submit">Send</button>
+			<% end %>
+	    </div>
+	</div>
+</div>
 
-<%= form_tag("basic/searchPID", :method => "get") do %>
-	<span>Search by Patent ID:</span>
-	<input type="text" name="patentID">
-	<button id="submitID" type="submit">Send</button>
-<% end %>
-
-<%= form_tag("basic/searchINV", :method => "get") do %>
-	<span>Search by Inventor:</span>
-	<input type="text" name="INV">
-	<button id="submitINV" type="submit">Send</button>
-<% end %>
