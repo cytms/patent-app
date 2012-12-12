@@ -7,7 +7,7 @@ $( "#submitINV" ).live("click",function(){
 		data: { INV: $('input[name="INV"]').val() },
 		dataType: 'html',
 		success: function(data){
-		 	alert("YA");
+		 	//alert("YA");
 		 	$('#searchResult').html(data);
 		 	console.log("yabi");
 		},

@@ -13,6 +13,11 @@
 
 ActiveRecord::Schema.define(:version => 20121211165428) do
 
+  create_table "abbr_demo", :id => false, :force => true do |t|
+    t.string "abbreviation", :limit => 15,  :null => false
+    t.string "name",         :limit => 100, :null => false
+  end
+
   create_table "abbreviations", :id => false, :force => true do |t|
     t.string "abbreviation", :limit => 15,  :null => false
     t.string "name",         :limit => 100, :null => false
