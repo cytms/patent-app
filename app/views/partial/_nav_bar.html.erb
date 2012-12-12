@@ -11,8 +11,13 @@
         </ul>
         <form class="navbar-form pull-right">
           <ul class="nav">
-            <li><a href="/cart"><i class="icon-shopping-cart"></i> Cart </a></li>
-            <li><a href="/login"><i class="icon-user"></i> Login </a></li>
+            <% if user_signed_in? %>
+              <li><a href="/cart"><i class="icon-shopping-cart"></i> My Cart </a></li>
+              <li><a href="#"><i class="icon-user"></i><%= current_user.email %></a></li>
+              <li><a href="/login/logout"> Logout </a></li>
+            <% else %>
+              <li><a href="/login"><i class="icon-user"></i> Login </a></li>
+            <% end %>
           </ul>
         </form>
       </div><!--/.nav-collapse -->
