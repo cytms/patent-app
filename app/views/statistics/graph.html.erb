@@ -1,8 +1,19 @@
 <!-- graph.html.erb -->
-<div id="countLineChart"></div>
-<div id="inventorBarChart"></div>
-<div id="IPCPieChart"></div>
-<div id="patentList"></div>
+
+<div class="tabbable">
+	<ul class="nav nav-tabs">
+		<li class="active"><a href="#countLineChart" data-toggle="tab">Number of patents</a></li>
+		<li><a href="#inventorBarChart" data-toggle="tab">Inventors</a></li>
+		<li><a href="#IPCPieChart" data-toggle="tab">IPC Distribution</a></li>
+		<li><a href="#patentList" data-toggle="tab">All patents</a></li>
+	</ul>
+	<div class="tab-content">
+		<div class="tab-pane active" id="countLineChart"></div>
+	    	<div class="tab-pane" id="inventorBarChart"></div>
+	    	<div class="tab-pane" id="IPCPieChart"></div>
+	    	<div class="tab-pane" id="patentList"></div>
+	</div>
+</div>
 
 <% content_for :javascript do %>
 	<%= javascript_include_tag "graph/patentList" %>
