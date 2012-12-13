@@ -13,6 +13,7 @@ class BasicController < ApplicationController
                                   FROM `patent_" + i.to_s + "` 
                                   WHERE `Patent_id` = '"+params[:patentID]+"'")
     }
+    render :layout => false
     #@inventor = @db.query("select * from `inventor_2007` where `Patent_id` = '"+params[:patentID]+"'")
     #@assignee = @db.query("select * from `assignee_2007` where `Patent_id` = '"+params[:patentID]+"'")
     #render :inline => "<% @patent.each do |r| %><%= r.to_s %><% end %><br><% @inventor.each do |r| %><%= r.to_s %><% end %><br><% @assignee.each do |r| %><%= r.to_s %><% end %>"
@@ -33,6 +34,7 @@ class BasicController < ApplicationController
                                           (inventor_" + i.to_s + ".Name LIKE '%#{temp[1]}%') AND
                                           (inventor_" + i.to_s + ".Name LIKE '%#{temp[2]}%')")
     }
+    render :layout => false
   end
   
   private
