@@ -1,5 +1,13 @@
-<%#= @result %>
+<% content_for :stylesheet do %>
+  <%= stylesheet_link_tag  "gh-fork-ribbon", :media => "all" %>
+<% end %>
+
 <div class="hero-unit new-hero-unit">
+  <div class="github-fork-ribbon-wrapper right">
+      <div class="github-fork-ribbon">
+          <a href="https://github.com/cytms/patent-app">Fork me on GitHub</a>
+      </div>
+  </div>
   <div id="iconCarousel" class="carousel slide">
     <!-- Carousel items -->
     <div class="carousel-inner">

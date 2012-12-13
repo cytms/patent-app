@@ -36,7 +36,9 @@ gem 'jquery-rails'
 gem 'thin'
 
 # Deploy with Capistrano
-# gem 'capistrano'
+group :development do
+	gem 'capistrano'
+end
 
 # To use debugger
 # gem 'debugger'
