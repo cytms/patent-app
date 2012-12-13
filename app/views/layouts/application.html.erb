@@ -16,8 +16,8 @@
       <%= yield %>  
     </div> <!-- /container -->
     <%= render "partial/footer" %> 
-    <%= yield :javascript %>
     <%= javascript_include_tag "bootstrap.min" %>
+    <%= yield :javascript %>
     <!-- Placed at the end of the document so the pages load faster -->
   </body>
 </html>
