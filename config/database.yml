@@ -31,7 +31,12 @@ test:
   timeout: 5000
 
 production:
-  adapter: sqlite3
-  database: db/production.sqlite3
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: patentproject2012
   pool: 5
-  timeout: 5000
+  username: chuya
+  password: '0514'
+  host: 140.112.107.1
+  port: 3306

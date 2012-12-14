@@ -4,4 +4,33 @@
 
 body{
 	padding-top: 70px;
+	background: url('/assets/cream_dust.png');
+}
+
+.new-navbar{
+	background: url('/assets/assault.png');
+}
+
+.new-hero-unit{
+	-moz-box-shadow: -2px 2px 5px 2px #aaa;
+	-webkit-box-shadow: -2px 2px 5px 2px#aaa;
+	box-shadow: -2px 2px 5px 2px #aaa;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	background: url('/assets/red_pattern.jpg');
+}
+
+#iconCarousel{
+	margin-top: -150px;
+}
+
+#iconCarousel .new-carousel{
+	background: transparent;
+	border: 0;
+	left: 0;
+}
+
+#iconCarousel .new-carousel.right {
+	right: 0;
 }
