@@ -3,7 +3,9 @@
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="#tab1" data-toggle="tab">Patent ID</a></li>
 		<li><a href="#tab2" data-toggle="tab">Inventor</a></li>
-		<li><a href="#tab3" data-toggle="tab">Test</a></li>
+		<li><a href="#tab3" data-toggle="tab">Assignee</a></li>
+		<li><a href="#tab4" data-toggle="tab">Title</a></li>
+		<li><a href="#tab5" data-toggle="tab">Test</a></li>
 	</ul>
 	<div class="tab-content">
 		<div class="tab-pane active" id="tab1">
@@ -21,18 +23,39 @@
 			</form>
 	    </div>
 	    <div class="tab-pane" id="tab3">
+	    		<form name="searchASS">
+				<span>Search by Assignee:</span>
+				<input type="text" name="companyIn" id="companyIn">
+				<div id="companySubmit" class="btn"><i class="icon-globe"></i> Search for more <br /> possible company names </div>
+				<div id="nameSet"><br /></div>
+				<!--div id="analysisSubmit">Search for these names!</div><br /-->
+				<% timezone = { '2007' => 2007, '2008' => 2008 } %>
+				<div>From: </div><%= select_tag("beginTime", options_for_select( timezone , 2007))%><br/>
+				<div>To:   </div><%= select_tag("endTime", options_for_select( timezone , 2007))%><br />
+				<button id="submitASS" type="button">Send</button>
+			</form>
+	    </div>
+	    <div class="tab-pane" id="tab4">
+	    		<form name="searchTITLE">
+				<span>Search by Keywords in Title:</span>
+				<input type="text" name="TITLE">
+				<button id="submitTITLE" type="button">Send</button>
+			</form>
+	    </div>
+		<div class="tab-pane" id="tab5">
 	    		<%= form_tag("basic/searchINV", :method => "get") do %>
-				<span>Search by Inventor:</span>
-				<input type="text" name="INV">
+				<span>Search by Assignee:</span>
+				<input type="text" name="ASSIGNEE">
 				<button id="submit" type="submit">Send</button>
 			<% end %>
 	    </div>
+	    
 	</div>
 </div>
 
 <div id="searchResult"></div>
 
 <% content_for :javascript do %>
-	<%= javascript_include_tag "basic/searchPID" %>
-	<%= javascript_include_tag "basic/searchINV" %>
+	<%= javascript_include_tag "basic/search" %>
+	<%= javascript_include_tag "company" %>
 <% end %>
