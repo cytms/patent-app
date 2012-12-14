@@ -10,7 +10,7 @@ class StatisticsController < ApplicationController
 
   def graph
   	#layout "application"
-  	$graph_companyIn = params[:companyIn].to_s
+    $graph_companyIn = params[:companyIn].to_s
     $graph_beginTime = params[:beginTime].to_i
     $graph_endTime = params[:endTime].to_i
   end
