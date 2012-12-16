@@ -9,7 +9,7 @@ $(document).ready(function(){
 				 'endTime': $('#endTime').attr('value') },
 		success : function(inventorBarChartHtml){
 			//alert("hello");
-			console.log(inventorBarChartHtml);
+			// console.log(inventorBarChartHtml);
 			$('#inventorBarChart').html(inventorBarChartHtml);
 
 		},
