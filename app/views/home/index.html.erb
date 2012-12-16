@@ -1,5 +1,14 @@
-<%#= @result %>
-<div class="hero-unit">
+<% content_for :stylesheet do %>
+  <%= stylesheet_link_tag  "gh-fork-ribbon", :media => "all" %>
+<% end %>
+
+<div class="hero-unit new-hero-unit">
+  <div class="github-fork-ribbon-wrapper right">
+      <div class="github-fork-ribbon">
+          <a href="https://github.com/cytms/patent-app">NTU IM</a>
+      </div>
+  </div>
+  <div class="loback"></div>
   <div id="iconCarousel" class="carousel slide">
     <!-- Carousel items -->
     <div class="carousel-inner">
@@ -35,11 +44,15 @@
 
     </div>
     <!-- Carousel nav -->
-    <a class="carousel-control left" href="#iconCarousel" data-slide="prev"
+    <a class="carousel-control left new-carousel" href="#iconCarousel" data-slide="prev"
         onClick="_gaq.push(['_trackEvent', 'iconCarousel', 'Prev']);">
       <i class="icon-arrow-left"></i></a>
-    <a class="carousel-control right" href="#iconCarousel" data-slide="next"
+    <a class="carousel-control right new-carousel" href="#iconCarousel" data-slide="next"
         onClick="_gaq.push(['_trackEvent', 'iconCarousel', 'Next']);">
       <i class="icon-arrow-right"></i></a>
   </div>
+</div>
+
+<div class="marketing">
+  <h1>Get Patent Stuff You Want.</h1>
 </div>

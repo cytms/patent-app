@@ -4,4 +4,57 @@
 
 body{
 	padding-top: 70px;
+	background: url('/assets/cream_dust.png');
+}
+
+.new-navbar{
+	background: url('/assets/assault.png');
+}
+
+.marketing{
+	text-align: center;
+	color: #666;
+}
+
+.marketing h1{
+	margin: 60px 0 10px;
+	font-size: 40px;
+	font-weight: 200;
+	line-height: 1;
+	letter-spacing: 1px;
+	text-shadow: -2px 2px 3px #fff;
+}
+
+.loback{
+	position: absolute;
+	margin-top: -100px;
+	margin-left: 140px;
+	height: 300px;
+	width: 600px;
+	background: url('/assets/loback.png');
+	opacity: 0.5;
+}
+
+.new-hero-unit{
+	-moz-box-shadow: -2px 2px 5px 2px #aaa;
+	-webkit-box-shadow: -2px 2px 5px 2px#aaa;
+	box-shadow: -2px 2px 5px 2px #aaa;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	background: url('/assets/red_pattern.jpg');
+}
+
+#iconCarousel{
+	margin-top: -150px;
+}
+
+#iconCarousel .new-carousel{
+	background: transparent;
+	border: 0;
+	left: 0;
+}
+
+#iconCarousel .new-carousel.right {
+	right: 0;
 }

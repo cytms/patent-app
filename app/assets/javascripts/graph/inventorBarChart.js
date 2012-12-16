@@ -4,8 +4,12 @@ $(document).ready(function(){
 		type : "GET", 
 		url  : "/statistics/inventorBarChart",
 		dataType : 'html',
+		data : { 'assigneeName': $('#assigneeName').attr('value'),
+				 'beginTime': $('#beginTime').attr('value'),
+				 'endTime': $('#endTime').attr('value') },
 		success : function(inventorBarChartHtml){
 			//alert("hello");
+			// console.log(inventorBarChartHtml);
 			$('#inventorBarChart').html(inventorBarChartHtml);
 
 		},

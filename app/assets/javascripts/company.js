@@ -1,33 +1,37 @@
+$('a#companySubmit').popover();
+
+
 $("#companySubmit").click(function(){
-	//console.log("pass "+ $("#companyIn").val());
-	$.ajax({
-		type : "GET", 
-		url  : "/statistics/searchCompany",
-		data : { companyIn : $("#companyIn").val() },
-		dataType : 'text',
-		success : function( results ){
-			var arrayObj = JSON.parse(results);
-			$('#nameSet').css('display', 'block');
-			var total = arrayObj.length;
-			var i = 0;
-			//console.log(total);
-			var optionResult = "";
-			while( i < total )
-			{
-				var str =  arrayObj[i];
-				var tmp = '<input class="aName" type="checkbox" name="Assignee" value="' + arrayObj[i] + '">' + arrayObj[i] + '</input></br>';
-				optionResult += tmp;
-				i += 1;
+	if($("#companyIn").val()){
+		$("#nameSet .span6").slideUp('slow');
+		$("#companySubmit").attr('disabled', 'disabled');	
+		$.ajax({
+			type : "GET", 
+			url  : "/statistics/searchCompany",
+			data : { companyIn : $("#companyIn").val() },
+			dataType : 'json',
+			beforeSend: function(){
+				$('.loader').show();
+			}, 
+			success: function( results ){
+				console.log(results);
+				var optionResult = '<div class="assigneeOpt"><input class="aName" type="checkbox" name="assigneeName[]" value="'+$("#companyIn").val()+'"><span class="aNameSpan" id="0">' + $("#companyIn").val() + '</span></input></div>';
+				for(var i=0; i<results.length; i++){
+					var tmp = '<div class="assigneeOpt"><input class="aName" type="checkbox" name="assigneeName[]" value="'+results[i]+'"><span class="aNameSpan" id="'+(i+1)+'">' + results[i] + '</span></input></div>';
+					optionResult += tmp;
+				}
+				$("#nameSet .span6").html(optionResult);
+				$("#nameSet .span6").slideDown('slow');
+			},
+			error: function(){
+				//console.log( 'something wrong happened' );
 			}
-			//alert(optionResult);
-			$("#nameSet").html(optionResult);
-		},
-		error : function(){
-			//console.log( 'something wrong happened' );
-		}
-	}).done(function(){
-		//console.log("ending");
-	});
+		}).done(function(){
+			$("#companySubmit").removeAttr("disabled");
+			$('.loader').hide();
+			//console.log("ending");
+		});
+	}
 });
 
 /*

@@ -1,91 +1,113 @@
 <div class="page-header">
 	<h3>Inventor Bar Chart <small>Identify important inventors.</small></h3>
 </div>
-<div class="row">
-	<div class="span3">
-	<% @query_result.each do |q|%>
-		<p><%= q['Name']%> : <%= q['COUNT( inventor_2007.Name )']%></p>
-	<% end %>
-	</div>
-	<div class="span8">
-		<div id="inventor_bar" style="min-width: 600px; height: 400px; margin: 0 auto">
-		</div>
-	</div>
-</div><!-- end of row -->
-
-<script type="text/javascript">
-var chart;
-$(document).ready(function() {
-    chart = new Highcharts.Chart({
-        chart: {
-            renderTo: 'inventor_bar',
-            type: 'column'
-        },
-        title: {
-            text: 'Inventor bar'
-        },
-        subtitle: {
-            text: '<%= @assignee_name %>'
-        },
-        xAxis: {
-            title: {
-                text: 'name'
-            },
-            categories: [
-            <% (0..@query_result.count-1).each do |i| %>
-            	<% if i == @query_result.count-1 %>
-            	'<%= @query_result[i]['Name'].to_s %>'
-            	<% else %>
-            	'<%= @query_result[i]['Name'].to_s %>',
-            	<% end %>
+<% (0..@countYear.count-1).each do |i| %>
+    <div class="row">
+    	<div class="span3">
+            <h4><%= @countYear[i] %></h4>
+            <% if(!(@query_result[@countYear[i]]['invName'][0] == "")) %>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Count</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% (0..@query_result[@countYear[i]]['invName'].count-1).each do |j| %>
+                        <tr>
+                            <td><%= j+1 %></td>
+                            <td><%= @query_result[@countYear[i]]['invName'][j] %></td>
+                            <td><%= @query_result[@countYear[i]]['invCount'][j] %></td>
+                        </tr>
+                        <% end %>
+                    </tbody>
+                </table>
             <% end %>
-            ],
-            labels: {
-            	rotation: -60,
-                align: 'right'
-            }
-        },
-        yAxis: {
-            min: 0,
-            title: {
-                text: 'count'
-            }
-        },
-        legend: {
-            layout: 'vertical',
-            backgroundColor: '#FFFFFF',
-            align: 'left',
-            verticalAlign: 'top',
-            x: 100,
-            y: 70,
-            floating: true,
-            shadow: true
-        },
-        tooltip: {
-            formatter: function() {
-                return ''+
-                    this.x +': '+ this.y +' mm';
-            }
-        },
-        plotOptions: {
-            column: {
-                pointPadding: 0.2,
-                borderWidth: 0
-            }
-        },
-        series: [{
-            name: 'Inventor',
-            data: [
-            <% (0..@query_result.count-1).each do |i| %>
-            	<% if i == @query_result.count-1 %>
-            	<%= @query_result[i]['COUNT( inventor_2007.Name )'] %>]
-            	<% else %>
-            	<%= @query_result[i]['COUNT( inventor_2007.Name )'] %>,
-            	<% end %>
-            <% end %>            
-        }]
-    });
-});   
-</script>
+    	</div>
+    	<div class="span9">
+            <% if(!(@query_result[@countYear[i]]['invName'][0] == "")) %>
+		      <div class="thumbnail" id="inventor_bar_<%= @countYear[i] %>" style="min-width: 680px; height: 400px; margin: 0 auto"></div>
+            <% else %>
+              <h4 class="well well-small">without inventor.</h4>
+            <% end %>
+    	</div>
+    </div><!-- end of row -->
+<% end %>   
 
+<% (0..@countYear.count-1).each do |i| %>
+    <% year = @countYear[i] %>
+    <% if(!(@query_result[year]['invName'][0] == "")) %>
+        <script type="text/javascript">
+            var invCount = JSON.parse("<%= @query_result[year]['invCount'] %>");
+            var chart;
+            $(document).ready(function() {
+                chart = new Highcharts.Chart({
+                    chart: {
+                        renderTo: 'inventor_bar_<%= year %>',
+                        type: 'column'
+                    },
+                    title: {
+                        text: 'Inventor bar'
+                    },
+                    subtitle: {
+                        text: '<%= @assignee_name.join(' ,') %>'
+                    },
+                    xAxis: {
+                        title: {
+                            text: 'name'
+                        },
+                        categories: [
+                        <% (0..@query_result[year]['invName'].count-1).each do |j| %>
+                            <% if(j == @query_result[year]['invName'].count-1) %>
+                                "<%= @query_result[year]['invName'][j]%>"
+                            <% else %>
+                                "<%= @query_result[year]['invName'][j]%>",
+                            <% end %>
+                        <% end %>
+                        ],
+                        labels: {
+                            rotation: -60,
+                            align: 'right'
+                        }
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: 'count'
+                        }
+                    },
+                    legend: {
+                        layout: 'vertical',
+                        backgroundColor: '#FFFFFF',
+                        align: 'left',
+                        verticalAlign: 'top',
+                        x: 100,
+                        y: 70,
+                        floating: true,
+                        shadow: true
+                    },
+                    tooltip: {
+                        formatter: function() {
+                            return ''+
+                                this.x +': '+ this.y +' patent(s)';
+                        }
+                    },
+                    plotOptions: {
+                        column: {
+                            pointPadding: 0.2,
+                            borderWidth: 0
+                        }
+                    },
+                    series: [{
+                        name: 'Inventor',
+                        data: invCount
+                    }]
+                });
+            });   
+        </script>
+    <% end %> 
+<% end %>
+<!-- end of inventorBar -->
 

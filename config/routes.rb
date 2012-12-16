@@ -1,7 +1,7 @@
 Test1::Application.routes.draw do
   devise_for :users
 
-  devise_for :models
+  # devise_for :models
 
   get '/' => 'home#index'
 

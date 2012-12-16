@@ -1,16 +1,18 @@
 <!--patentList.html.erb-->
 <div class="page-header">
-    <h3>Patent List <small>List of all patents for this company. (Invention patents only)</small></h3>
+    <h3>Patent List <small>List of all patents for this company. (Utility patents only)</small></h3>
 </div>
 
-<p>
-<table>
-	<tr>
-		<td><b>Patent ID</b></td>
-		<td><b>Title</b></td>
-		<td><b>Inventor</b></td>
-		<td><b>Issued Date</b></td>
-	</tr>
+<table class="table">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Title</th>
+			<th>Inventor</th>
+			<th>Issued Date</th>
+		</tr>
+	</thead>
+	<tbody>
 	<% (@start_year..@end_year).each { |i| %>
      		<% if @patent[i].to_a.empty? == false %>
      			<% @patent[i].to_a.each do |p| %>
@@ -26,6 +28,5 @@
      			<% end %>
 		<% end %>
      <% } %>
-
- </table>
-</p>
+ 	</tbody>
+</table>
