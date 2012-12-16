@@ -3,14 +3,14 @@ $.ajax({
 	type : "GET", 
 	url  : "/statistics/IPCPieChart",
 	dataType : 'html',
+	data : { 'assigneeName': $('#assigneeName').attr('value'),
+				 'beginTime': $('#beginTime').attr('value'),
+				 'endTime': $('#endTime').attr('value') },
 	success : function(IPCPieChartHtml){
 		$('#IPCPieChart').html(IPCPieChartHtml);
-		console.log('success!');
-		console.log(IPCPieChartHtml);
-		console.log(bodyHtml);
 	},
 	error : function(){
-		console.log('something wrong happened');
+		console.log('IPCPieChart wrong happened');
 	}
 }).done(function(){
 	console.log("ending");

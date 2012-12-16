@@ -1,4 +1,11 @@
 <!-- graph.html.erb -->
+<% content_for :stylesheet do %>
+	<%= stylesheet_link_tag    "ajaxloader", :media => "all" %>
+<% end %>
+
+<h3><i class="icon-bar-chart"></i> Statistics </h3>
+<blockquote><h4>Target Assignee : <span id="assigneeName" value="<%= @graph_assigneeName %>"><%= @graph_assigneeName.join ' ,' %></span></h4>
+<h4>From : <span id="beginTime" value="<%= @graph_beginTime %>"><%= @graph_beginTime %></span>&nbsp&nbsp -> &nbsp To : <span id="endTime" value="<%= @graph_endTime %>"><%= @graph_endTime %></span></h4></blockquote>
 
 <div class="tabbable">
 	<ul class="nav nav-tabs">
@@ -8,18 +15,47 @@
 		<li><a href="#patentList" data-toggle="tab">Patent List</a></li>
 	</ul>
 	<div class="tab-content">
-		<div class="tab-pane active" id="countLineChart"></div>
-	    	<div class="tab-pane" id="inventorBarChart"></div>
-	    	<div class="tab-pane" id="IPCPieChart"></div>
-	    	<div class="tab-pane" id="patentList"></div>
+		<div class="tab-pane active" id="countLineChart">
+			<div class="wait">
+				<%= render :partial => "partial/ajaxloader" %>
+				<div class="waitMsg pull-left" style="margin-top: 25px; margin-left: 20px;">
+					<h4> Wait for number of patents per year ...</h4>
+				</div>
+			</div>
+		</div>
+	    <div class="tab-pane" id="inventorBarChart">
+	    	<div class="wait">
+				<%= render :partial => "partial/ajaxloader" %>
+				<div class="waitMsg pull-left" style="margin-top: 25px; margin-left: 20px;">
+					<h4> Wait for inventor bar chart ...</h4>
+				</div>
+			</div>
+	    </div>
+	    <div class="tab-pane" id="IPCPieChart">
+	    	<div class="wait">
+				<%= render :partial => "partial/ajaxloader" %>
+				<div class="waitMsg pull-left" style="margin-top: 25px; margin-left: 20px;">
+					<h4> Wait for IPC pie chart ...</h4>
+				</div>
+			</div>
+	    </div>
+	    <div class="tab-pane" id="patentList">
+	    	<div class="wait">
+				<%= render :partial => "partial/ajaxloader" %>
+				<div class="waitMsg pull-left" style="margin-top: 25px; margin-left: 20px;">
+					<h4> Wait for patent list ...</h4>
+				</div>
+			</div>
 	</div>
 </div>
 
 <% content_for :javascript do %>
+	
+	<%= javascript_include_tag "graph/inventorBarChart" %>
 	<%= javascript_include_tag "graph/patentList" %>
 	<%= javascript_include_tag "graph/countLineChart" %>
-	<%= javascript_include_tag "graph/inventorBarChart" %>
 	<%= javascript_include_tag "graph/IPCPieChart" %>
+	
 
 	<%= javascript_include_tag "highcharts" %>
 	<%= javascript_include_tag "modules/exporting" %>

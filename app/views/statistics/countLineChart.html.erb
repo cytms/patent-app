@@ -5,7 +5,8 @@
         
         $(document).ready(function() {
     		var array = JSON.parse('<%= @count %>');
-    		var company = '<%= @assignee_name %>';
+    		var company = '<%= @assignee_name.join(" ,") %>';
+            var countYear = JSON.parse('<%= @countYear %>');
             chart = new Highcharts.Chart({
                 chart: {
                     renderTo: 'container',
@@ -22,7 +23,7 @@
                     x: -20
                 },
                 xAxis: {
-                    categories: ['2007', '2008', '20009', '2010', '2011', '2012']
+                    categories: countYear
                 },
                 yAxis: {
                     title: {
@@ -32,7 +33,8 @@
                         value: 0,
                         width: 1,
                         color: '#808080'
-                    }]
+                    }],
+                    min: 0
                 },
                 tooltip: {
                     formatter: function() {
@@ -64,4 +66,4 @@
     <h3>Line Chart <small>Number of patents issued each year.</small></h3>
 </div>
 
-<div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+<div id="container" class="thumbnail" style="min-width: 800px; height: 400px; margin: 0 auto"></div>
