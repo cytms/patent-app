@@ -11,6 +11,30 @@ body{
 	background: url('/assets/assault.png');
 }
 
+.marketing{
+	text-align: center;
+	color: #666;
+}
+
+.marketing h1{
+	margin: 60px 0 10px;
+	font-size: 40px;
+	font-weight: 200;
+	line-height: 1;
+	letter-spacing: 1px;
+	text-shadow: -2px 2px 3px #fff;
+}
+
+.loback{
+	position: absolute;
+	top: 150px;
+	left: 350px;
+	height: 300px;
+	width: 600px;
+	background: url('/assets/loback.png');
+	opacity: 0.5;
+}
+
 .new-hero-unit{
 	-moz-box-shadow: -2px 2px 5px 2px #aaa;
 	-webkit-box-shadow: -2px 2px 5px 2px#aaa;
