@@ -8,7 +8,7 @@ class BasicController < ApplicationController
   def patent
     @patent = Array.new
     (2003..2008).each do |i|
-      @patent[i] = @db.query("SELECT `Patent_id`, `Title`, `Issued_date`, `Filed_Date`, `Abstract`, `Claims`, `Description`, `Name`, `Assignee`
+      @patent[i] = @db.query("SELECT `Patent_id`, `Title`, `Issued_date`, `Filed_Date`, `Abstract`, `Claims`, `Summary`, `Name`, `Assignee`
                                   FROM `patent_" + i.to_s + "`
                                   LEFT JOIN `inventor_" + i.to_s + "`
                                   USING ( Patent_id )
@@ -22,7 +22,7 @@ class BasicController < ApplicationController
     #render :text => "OK!!!!!!!!!!!!"
     @patent = Array.new
     (2003..2008).each { |i|
-      @patent[i] = @db.query("SELECT `Patent_id`, `Title`, `Issued_date`, `Filed_Date`, `Abstract`, `Claims`, `Description`, `Name`, `Assignee`
+      @patent[i] = @db.query("SELECT `Patent_id`, `Title`, `Issued_date`, `Filed_Date`, `Abstract`, `Claims`, `Summary`, `Name`, `Assignee`
                                   FROM `patent_" + i.to_s + "`
                                   LEFT JOIN `inventor_" + i.to_s + "`
                                   USING ( Patent_id )
