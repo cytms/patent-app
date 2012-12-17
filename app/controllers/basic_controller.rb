@@ -1,5 +1,6 @@
 class BasicController < ApplicationController
   before_filter :connect_db #, :except =>[:index]
+  layout "graph", :except => [:index]
   
   def index
 

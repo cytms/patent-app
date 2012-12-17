@@ -1,0 +1,108 @@
+<% content_for :stylesheet do %>
+	<%= stylesheet_link_tag "citation/reset", :media => "all" %>
+	<%= stylesheet_link_tag "citation/bootstrap.min", :media => "all" %>
+	<%= stylesheet_link_tag "citation/style", :media => "all" %>
+	<%= stylesheet_link_tag "citation/reset", :media => "all" %>
+<% end %>
+<%= javascript_include_tag "citation/libs/modernizr-2.0.6.min" %>
+
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+
+  <div id="container" class="container">
+
+      <div id="song_selection" class="control">
+        <h3>Patent Group</h3>
+        <select id="song_select">
+          <option value="test.json">test</option>
+        </select>
+
+      </div>
+    <!-- <div id="controls"> -->
+      <div id="layouts" class="control">
+        <h3>Layout</h3>
+        <a id="force" class="active">Force Directed</a>
+        <a id="radial">Assignee</a>
+      </div>
+<!--       <div id="filters" class="control">
+        <h3>Filter</h3>
+        <a id="all" class="active">All</a>
+        <a id="popular">Popular</a>
+        <a id="obscure">Obscure</a>
+      </div>
+      <div id="sorts" class="control">
+        <h3>Sort</h3>
+        <a id="songs" class="active">Songs</a>
+        <a id="links">Links</a>
+      </div> -->
+      <div id="search_section" class="control">
+        <form id="search_form" action=""  method="post">
+          <p class="search_title">Search <input type="text" class="text-input" id="search" value="" /></p>
+        </form>
+      </div>
+    <div id="main" role="main">
+      <div id="vis"></div>
+    </div>
+
+  </div> <!--! end of #container -->
+
+
+  <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> -->
+  <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.2.min.js"><\/script>')</script>
+
+<% content_for :javascript do %>
+	<%= javascript_include_tag "citation/plugins" %>
+	<%= javascript_include_tag "citation/script" %>
+	<%= javascript_include_tag "citation/libs/coffee-script" %>
+	<%= javascript_include_tag "citation/libs/d3.v2" %>
+	<%= javascript_include_tag "citation/Tooltip" %>
+
+	<%= javascript_include_tag "citation/vis" %>
+<% end %>
+
+  <script> // Change UA-XXXXX-X to be your site's ID
+    window._gaq = [['_setAccount','UAXXXXXXXX1'],['_trackPageview'],['_trackPageLoadTime']];
+    Modernizr.load({
+      load: ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js'
+    });
+    // myNetwork("#vis", <%@trans%>);
+
+
+    	// $(document).ready(function () {
+    	// // $("#force").click(function () {
+     //        Graph();
+     //    });
+     //    function Graph() {
+     //        // $("#vis").autocomplete({
+     //            // source: function (request, response) {
+     //                $.ajax({
+     //                    type: "POST",
+     //                    contentType: "application/json; charset=utf-8",
+     //                    url: "/citation/showGraph",
+     //                    // data: "{'username':'" + document.getElementById('txtProduct').value + "'}",
+     //                    dataType: "json",
+     //                    success: function (data) {
+     //                    	var myNetwork = Network();
+     //                        myNetwork("#vis", data);
+     //                    },
+     //                    error: function (result) {
+     //                        alert("Error");
+     //                    }
+     //                });
+     //            // }
+     //        // });
+     //    }
+
+  </script>
+
+
+  <!--[if lt IE 7 ]>
+    <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
+    <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
+  <![endif]-->
+  
+
