@@ -48,14 +48,14 @@
 
 			  <div class="row input-timeInterval">
 			  	<div class="span12">
-			  		<% timezone = { '2007' => 2007, '2008' => 2008 } %>
+			  		<% timezone = { '2003' => 2003, '2007' => 2007 } %>
 			  		<div class="span3" id="beginTime">
 					  	<span>From : </span>
-					  	<%= select_tag("beginTime", options_for_select( timezone , 2007))%>
+					  	<%= select_tag("beginTime", options_for_select( timezone , 2006))%>
 				  	</div>
 				  	<div class="span3" id="endTime">
 					  	<span>To : </span>
-					  	<%= select_tag("endTime", options_for_select( timezone , 2008))%>
+					  	<%= select_tag("endTime", options_for_select( timezone , 2007))%>
 				  	</div>
 			  	</div>
 			  </div>
