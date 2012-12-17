@@ -29,8 +29,10 @@
     	<div class="span9">
             <% if(!(@query_result[@countYear[i]]['invName'][0] == "")) %>
 		      <div class="thumbnail" id="inventor_bar_<%= @countYear[i] %>" style="min-width: 680px; height: 400px; margin: 0 auto"></div>
+              <hr>
             <% else %>
               <h4 class="well well-small">without inventor.</h4>
+              <hr>
             <% end %>
     	</div>
     </div><!-- end of row -->
