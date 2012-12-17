@@ -1,3 +1,8 @@
+<% content_for :stylesheet do %>
+	<%= stylesheet_link_tag    "loader", :media => "all" %>
+<% end %>
+
+
 <div class="page-header">
 	<h3><i class="icon-search"></i> Basic Search </h3>
 </div>
@@ -12,44 +17,116 @@
 	<div class="tab-content">
 		<div class="tab-pane active" id="tab1">
 	      	<form name="searchPID" class="form-inline">
-				<span>Search by Patent ID:</span>
-				<input type="text" name="patentID">
-				<button class="btn" id="submitID" type="button">Send</button>
+	      		<div class="row">
+	      			<div class="span8 pull-left">
+						<span>Search by Patent ID:</span>
+						<input type="text" class="span5" name="patentID">
+						<button class="btn" id="submitID" type="button">Send</button>
+						<div class="loader pull-right" id="basicPID">
+						    <figure class="spinner">
+							  <figure class="bar1"></figure>   
+							  <figure class="bar2"></figure>
+							  <figure class="bar3"></figure>
+							  <figure class="bar4"></figure>
+							  <figure class="bar5"></figure>
+							  <figure class="bar6"></figure>
+							  <figure class="bar7"></figure>
+							  <figure class="bar8"></figure>
+							  <figure class="bar9"></figure>
+							  <figure class="bar10"></figure>
+							  <figure class="bar11"></figure>
+							  <figure class="bar12"></figure>			  
+						    </figure>
+						</div>
+					</div>
+				</div>
 			</form>
 	    </div>
 	    <div class="tab-pane" id="tab2">
 	    	<form name="searchINV" class="form-inline">
-				<span>Search by Inventor:</span>
-				<input type="text" name="INV">
-				<button class="btn" id="submitINV" type="button">Send</button>
+	    		<div class="row">
+	    			<div class="span8 pull-left">
+						<span>Search by Inventor:</span>
+						<input type="text" class="span5" name="INV">
+						<button class="btn" id="submitINV" type="button">Send</button>
+						<div class="loader pull-right" id="basicINV">
+						    <figure class="spinner">
+							  <figure class="bar1"></figure>   
+							  <figure class="bar2"></figure>
+							  <figure class="bar3"></figure>
+							  <figure class="bar4"></figure>
+							  <figure class="bar5"></figure>
+							  <figure class="bar6"></figure>
+							  <figure class="bar7"></figure>
+							  <figure class="bar8"></figure>
+							  <figure class="bar9"></figure>
+							  <figure class="bar10"></figure>
+							  <figure class="bar11"></figure>
+							  <figure class="bar12"></figure>			  
+						    </figure>
+						</div>
+					</div>
+				</div>
 			</form>
 	    </div>
 	    <div class="tab-pane" id="tab3">
-	    	<form name="searchASS class="form-inline"">
-				<span>Search by Assignee:</span>
-				<input type="text" name="companyIn" id="companyIn">
-				<div id="companySubmit" class="btn"><i class="icon-globe"></i> Search for more <br /> possible company names </div>
-				<div id="nameSet"><br /></div>
-				<!--div id="analysisSubmit">Search for these names!</div><br /-->
-				<% timezone = { '2007' => 2007, '2008' => 2008 } %>
-				<div>From: </div><%= select_tag("beginTime", options_for_select( timezone , 2007))%><br/>
-				<div>To:   </div><%= select_tag("endTime", options_for_select( timezone , 2007))%><br />
-				<button class="btn" id="submitASS" type="button">Send</button>
-			</form>
+			<form name="searchASS" class="form-inline">
+				<div class="row">
+					 <div class="span8 pull-left">
+						<span>Search by Assignee:</span>
+						<input type="text" class="span5" name="ASSIGNEE">
+						<button class="btn" id="submitASS" type="button">Send</button>
+						<div class="loader pull-right" id="basicASS">
+						    <figure class="spinner">
+							  <figure class="bar1"></figure>   
+							  <figure class="bar2"></figure>
+							  <figure class="bar3"></figure>
+							  <figure class="bar4"></figure>
+							  <figure class="bar5"></figure>
+							  <figure class="bar6"></figure>
+							  <figure class="bar7"></figure>
+							  <figure class="bar8"></figure>
+							  <figure class="bar9"></figure>
+							  <figure class="bar10"></figure>
+							  <figure class="bar11"></figure>
+							  <figure class="bar12"></figure>			  
+						    </figure>
+						</div>
+				    </div>
+				</div>
+		  	</form>
 	    </div>
 	    <div class="tab-pane" id="tab4">
 	    	<form name="searchTITLE" class="form-inline">
-				<span>Search by Keywords in Title:</span>
-				<input type="text" name="TITLE">
-				<button class="btn" id="submitTITLE" type="button">Send</button>
+	    		<div class="row">
+	    			 <div class="span9 pull-left">
+						<span>Search by Keywords in Title:</span>
+						<input type="text" class="span5" name="TITLE">
+						<button class="btn" id="submitTITLE" type="button">Send</button>
+						<div class="loader pull-right" id="basicTITLE">
+						    <figure class="spinner">
+							  <figure class="bar1"></figure>   
+							  <figure class="bar2"></figure>
+							  <figure class="bar3"></figure>
+							  <figure class="bar4"></figure>
+							  <figure class="bar5"></figure>
+							  <figure class="bar6"></figure>
+							  <figure class="bar7"></figure>
+							  <figure class="bar8"></figure>
+							  <figure class="bar9"></figure>
+							  <figure class="bar10"></figure>
+							  <figure class="bar11"></figure>
+							  <figure class="bar12"></figure>			  
+						    </figure>
+						</div>
+					</div>
+				</div>
 			</form>
 	    </div>
 		<div class="tab-pane" id="tab5">
-	    	<%= form_tag("basic/searchINV", :method => "get", :class => "form-inline") do %>
-				<span>Search by Assignee:</span>
-				<input type="text" name="ASSIGNEE">
-				<button class="btn" id="submit" type="submit">Send</button>
-			<% end %>
+			<span>Search by Assignee:</span>
+			<input type="text" class="span5" name="ASSIGNEE">
+			<button class="btn" id="submit" type="submit">Send</button>
 	    </div>
 	    
 	</div>
@@ -59,5 +136,4 @@
 
 <% content_for :javascript do %>
 	<%= javascript_include_tag "basic/search" %>
-	<%= javascript_include_tag "company" %>
 <% end %>

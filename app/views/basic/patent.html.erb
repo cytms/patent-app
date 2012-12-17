@@ -1,0 +1,25 @@
+<h3><i class="icon-search"></i> Search Results </h3>
+
+<p>
+	<blockquote><h4>Search by Patent ID = "<%= params[:id]%>"</h4></blockquote>
+</p>
+<blockquote class="pull-right">
+	<small>See the patent on <a href="http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO1&Sect2=HITOFF&d=PALL&p=1&u=%2Fnetahtml%2FPTO%2Fsrchnum.htm&r=1&f=G&l=50&s1=<%= params[:id]%>.PN.&OS=PN/<%= params[:id]%>&RS=PN/<%= params[:id]%>">USPTO</a>, &nbsp<a href="http://www.google.com.tw/patents/US<%= params[:id]%>">Google Patent</a></small>
+</blockquote>
+<% (2003..2008).each do |i| %>
+	 <% if @patent[i].to_a.empty? == false %>
+	    <p><b>Patent ID: </b><%= @patent[i].to_a[0]["Patent_id"].to_s %></p>
+		<p><b>Title: </b><%= @patent[i].to_a[0]["Title"].to_s %></p>
+		<p><b>Inventors: </b><%= @patent[i].to_a[0]["Name"].to_s %></p>
+		<p><b>Issued Date: </b><%= @patent[i].to_a[0]["Issued_date"].to_s %></p>
+		<p><b>Filed Date: </b><%= @patent[i].to_a[0]["Filed_Date"].to_s %></p>
+		<hr>
+		<p><b>Abstract: </b><br><%= @patent[i].to_a[0]["Abstract"].to_s %></p>
+		<hr>
+		<p><b>Claims: </b><br><%= @patent[i].to_a[0]["Claims"].to_s %></p>
+		<hr>
+		<p><b>Summary: </b><br><%= @patent[i].to_a[0]["Summary"].to_s %></p>
+		<hr>
+	<% end %>
+<% end %>
+ 
