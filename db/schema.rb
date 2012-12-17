@@ -13,11 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 20121211165428) do
 
-  create_table "abbr_demo", :id => false, :force => true do |t|
-    t.string "abbreviation", :limit => 15,  :null => false
-    t.string "name",         :limit => 100, :null => false
-  end
-
   create_table "abbreviations", :id => false, :force => true do |t|
     t.string "abbreviation", :limit => 15,  :null => false
     t.string "name",         :limit => 100, :null => false
@@ -75,7 +70,7 @@ ActiveRecord::Schema.define(:version => 20121211165428) do
   end
 
   create_table "carts", :force => true do |t|
-    t.string   "patent_id"
+    t.text     "patent_id"
     t.integer  "user"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -261,24 +256,6 @@ ActiveRecord::Schema.define(:version => 20121211165428) do
     t.string "Patent_id", :limit => 15, :null => false
     t.string "IPC_class", :limit => 25, :null => false
   end
-
-  create_table "models", :force => true do |t|
-    t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
-  end
-
-  add_index "models", ["email"], :name => "index_models_on_email", :unique => true
-  add_index "models", ["reset_password_token"], :name => "index_models_on_reset_password_token", :unique => true
 
   create_table "patent_1990", :primary_key => "Patent_id", :force => true do |t|
     t.string "Issued_date", :limit => 25
