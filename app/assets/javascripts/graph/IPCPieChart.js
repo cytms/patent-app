@@ -4,8 +4,8 @@ $.ajax({
 	url  : "/statistics/IPCPieChart",
 	dataType : 'html',
 	data : { 'assigneeName': $('#assigneeName').attr('value'),
-				 'beginTime': $('#beginTime').attr('value'),
-				 'endTime': $('#endTime').attr('value') },
+			 'beginTime': $('#beginTime').attr('value'),
+			 'endTime': $('#endTime').attr('value') },
 	success : function(IPCPieChartHtml){
 		$('#IPCPieChart').html(IPCPieChartHtml);
 	},

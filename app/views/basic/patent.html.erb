@@ -1,16 +1,11 @@
 <h3><i class="icon-search"></i> Search Results </h3>
 
 <p>
-	<blockquote><h4>Search by Patent ID = "<%= params[:patentID]%>"</h4></blockquote>
+	<blockquote><h4>Search by Patent ID = "<%= params[:id]%>"</h4></blockquote>
 </p>
 <blockquote class="pull-right">
-	<small>See the patent on <a href="http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO1&Sect2=HITOFF&d=PALL&p=1&u=%2Fnetahtml%2FPTO%2Fsrchnum.htm&r=1&f=G&l=50&s1=<%= params[:patentID]%>.PN.&OS=PN/<%= params[:patentID]%>&RS=PN/<%= params[:patentID]%>">USPTO</a>, &nbsp<a href="http://www.google.com.tw/patents/US<%= params[:patentID]%>">Google Patent</a></small>
+	<small>See the patent on <a href="http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO1&Sect2=HITOFF&d=PALL&p=1&u=%2Fnetahtml%2FPTO%2Fsrchnum.htm&r=1&f=G&l=50&s1=<%= params[:id]%>.PN.&OS=PN/<%= params[:id]%>&RS=PN/<%= params[:id]%>">USPTO</a>, &nbsp<a href="http://www.google.com.tw/patents/US<%= params[:id]%>">Google Patent</a></small>
 </blockquote>
-
-<form name="addCart" class="form-inline">
-	<button class="btn" id="addCartPatent" type="button"><i class="icon-shopping-cart"></i>Add to My Patent Cart</button>
-</form>
-
 <% (2003..2008).each do |i| %>
 	 <% if @patent[i].to_a.empty? == false %>
 	    <p><b>Patent ID: </b><%= @patent[i].to_a[0]["Patent_id"].to_s %></p>
@@ -27,3 +22,4 @@
 		<hr>
 	<% end %>
 <% end %>
+ 
