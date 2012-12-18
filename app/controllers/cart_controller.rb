@@ -1,8 +1,27 @@
 class CartController < ApplicationController
+<<<<<<< HEAD
   before_filter :connect_db #, :except =>[:index]
+=======
+  before_filter :connect_db , :authenticate_user!
+>>>>>>> 7c4e6c22455e683612c3e54e40c17d3967e3ba40
   
   def index
+    @query = @db.query("select * from `carts` where `user_id`=#{current_user.id}").to_a.first
+    if @query["patents"].nil? == true then
+      @result_patents = nil
+    else
+      @tmp = @query["patents"].to_s.chomp("\\")
+      @result_patents = JSON.parse(@tmp)
+    end
 
+    #group
+    @query = @db.query("select * from `carts` where `user_id`=#{current_user.id}").to_a.first
+    if @query["groups"].nil? == true then
+      @result_groups = nil
+    else
+      @tmp = @query["groups"].to_s.chomp("\\")
+      @result_groups = JSON.parse(@tmp)
+    end
   end
 
   def addPatent
@@ -37,7 +56,7 @@ class CartController < ApplicationController
 	end
     render :json => message.to_json
   end
-  
+
   def addGroup
   	#@assignee = JSON.parse(params[:assignee])
   	params[:assignee].each { |s| s = s.strip }
@@ -69,7 +88,6 @@ class CartController < ApplicationController
 	end
     render :json => message.to_json
   end
-
 
   private
   def connect_db
