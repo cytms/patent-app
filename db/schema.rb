@@ -69,11 +69,12 @@ ActiveRecord::Schema.define(:version => 20121211165428) do
     t.text "Location",  :limit => 16777215, :null => false
   end
 
-  create_table "carts", :force => true do |t|
-    t.text     "patent_id"
-    t.integer  "user"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+  create_table "carts", :primary_key => "cart_id", :force => true do |t|
+    t.text      "patents"
+    t.text      "groups"
+    t.integer   "user_id",    :null => false
+    t.timestamp "created_at", :null => false
+    t.timestamp "updated_at", :null => false
   end
 
   create_table "examiner_2007", :id => false, :force => true do |t|
@@ -154,6 +155,33 @@ ActiveRecord::Schema.define(:version => 20121211165428) do
     t.string "Name",      :limit => 50, :null => false
     t.string "Patent_id", :limit => 50, :null => false
     t.string "Location",  :limit => 50, :null => false
+  end
+
+  add_index "inventor_2008", ["Patent_id"], :name => "patent_id", :length => {"Patent_id"=>7}
+
+  create_table "ipc_1985", :id => false, :force => true do |t|
+    t.string "Patent_id", :limit => 15, :null => false
+    t.string "IPC_class", :limit => 25, :null => false
+  end
+
+  create_table "ipc_1986", :id => false, :force => true do |t|
+    t.string "Patent_id", :limit => 15, :null => false
+    t.string "IPC_class", :limit => 25, :null => false
+  end
+
+  create_table "ipc_1987", :id => false, :force => true do |t|
+    t.string "Patent_id", :limit => 15, :null => false
+    t.string "IPC_class", :limit => 25, :null => false
+  end
+
+  create_table "ipc_1988", :id => false, :force => true do |t|
+    t.string "Patent_id", :limit => 15, :null => false
+    t.string "IPC_class", :limit => 25, :null => false
+  end
+
+  create_table "ipc_1989", :id => false, :force => true do |t|
+    t.string "Patent_id", :limit => 15, :null => false
+    t.string "IPC_class", :limit => 25, :null => false
   end
 
   create_table "ipc_1990", :id => false, :force => true do |t|
@@ -255,6 +283,56 @@ ActiveRecord::Schema.define(:version => 20121211165428) do
   create_table "ipc_2008", :id => false, :force => true do |t|
     t.string "Patent_id", :limit => 15, :null => false
     t.string "IPC_class", :limit => 25, :null => false
+  end
+
+  create_table "patent_1985", :primary_key => "Patent_id", :force => true do |t|
+    t.string "Issued_date", :limit => 25
+    t.string "Filed_Date",  :limit => 25
+    t.text   "Title"
+    t.text   "Abstract"
+    t.text   "Claims"
+    t.text   "Description"
+    t.text   "Summary"
+  end
+
+  create_table "patent_1986", :primary_key => "Patent_id", :force => true do |t|
+    t.string "Issued_date", :limit => 25
+    t.string "Filed_Date",  :limit => 25
+    t.text   "Title"
+    t.text   "Abstract"
+    t.text   "Claims"
+    t.text   "Description"
+    t.text   "Summary"
+  end
+
+  create_table "patent_1987", :primary_key => "Patent_id", :force => true do |t|
+    t.string "Issued_date", :limit => 25
+    t.string "Filed_Date",  :limit => 25
+    t.text   "Title"
+    t.text   "Abstract"
+    t.text   "Claims"
+    t.text   "Description"
+    t.text   "Summary"
+  end
+
+  create_table "patent_1988", :primary_key => "Patent_id", :force => true do |t|
+    t.string "Issued_date", :limit => 25
+    t.string "Filed_Date",  :limit => 25
+    t.text   "Title"
+    t.text   "Abstract"
+    t.text   "Claims"
+    t.text   "Description"
+    t.text   "Summary"
+  end
+
+  create_table "patent_1989", :primary_key => "Patent_id", :force => true do |t|
+    t.string "Issued_date", :limit => 25
+    t.string "Filed_Date",  :limit => 25
+    t.text   "Title"
+    t.text   "Abstract"
+    t.text   "Claims"
+    t.text   "Description"
+    t.text   "Summary"
   end
 
   create_table "patent_1990", :primary_key => "Patent_id", :force => true do |t|
@@ -484,6 +562,31 @@ ActiveRecord::Schema.define(:version => 20121211165428) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "uspc_1985", :id => false, :force => true do |t|
+    t.string "Patent_id",  :limit => 15,                 :null => false
+    t.string "USPC_class", :limit => 25, :default => "", :null => false
+  end
+
+  create_table "uspc_1986", :id => false, :force => true do |t|
+    t.string "Patent_id",  :limit => 15,                 :null => false
+    t.string "USPC_class", :limit => 25, :default => "", :null => false
+  end
+
+  create_table "uspc_1987", :id => false, :force => true do |t|
+    t.string "Patent_id",  :limit => 15,                 :null => false
+    t.string "USPC_class", :limit => 25, :default => "", :null => false
+  end
+
+  create_table "uspc_1988", :id => false, :force => true do |t|
+    t.string "Patent_id",  :limit => 15,                 :null => false
+    t.string "USPC_class", :limit => 25, :default => "", :null => false
+  end
+
+  create_table "uspc_1989", :id => false, :force => true do |t|
+    t.string "Patent_id",  :limit => 15,                 :null => false
+    t.string "USPC_class", :limit => 25, :default => "", :null => false
+  end
 
   create_table "uspc_1990", :id => false, :force => true do |t|
     t.string "Patent_id",  :limit => 15,                 :null => false
