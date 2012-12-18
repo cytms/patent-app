@@ -7,6 +7,15 @@ body{
 	background: url('/assets/cream_dust.png');
 }
 
+.footer-bg{
+	border-top: 1px solid #fff;
+	-moz-box-shadow: 0px -1px 4px 1px rgba(180, 180, 180, 1);
+	-webkit-box-shadow: 0px -1px 4px 1px rgba(180, 180, 180, 1);
+	box-shadow: 0px -1px 4px 1px rgba(180, 180, 180, 1);
+	text-shadow: -2px 2px 1px white;
+	margin-top: 300px; 
+}
+
 .new-navbar{
 	background: url('/assets/assault.png');
 }

@@ -1,9 +1,21 @@
 class BasicController < ApplicationController
   before_filter :connect_db #, :except =>[:index]
-  layout "graph", :except => [:index]
   
   def index
 
+  end
+
+  def patent
+    @patent = Array.new
+    (2003..2008).each do |i|
+      @patent[i] = @db.query("SELECT `Patent_id`, `Title`, `Issued_date`, `Filed_Date`, `Abstract`, `Claims`, `Summary`, `Name`, `Assignee`
+                                  FROM `patent_" + i.to_s + "`
+                                  LEFT JOIN `inventor_" + i.to_s + "`
+                                  USING ( Patent_id )
+                                  LEFT JOIN `assignee_" + i.to_s + "`
+                                  USING ( Patent_id )
+                                  WHERE `Patent_id` = '"+params[:id]+"'")
+    end
   end
 
   def searchPID
@@ -44,36 +56,36 @@ class BasicController < ApplicationController
     render :layout => false
   end
   
-def searchASS
-end
-
-def searchTITLE
-  @patentID = Array.new
-  keywords = Array.new
-  keywords = params[:TITLE].split(%r{\s})
-  count = keywords.length
-  @size = 0
-  n = 1
-
-  tempQuery = "(`Title` LIKE '%" + keywords[0] + "%')"
-  while n < count do
-    tempQuery << "AND (`Title` LIKE '%" + keywords[n] + "%')"
-    n += 1
+  def searchASS
   end
 
-  (2007..2008).each { |i|
-    @patentID[i] = @db.query("SELECT `Patent_id`, `Title`, `Name`, `Assignee`
-                                  FROM `patent_" + i.to_s + "`
-                                  LEFT JOIN `inventor_" + i.to_s + "`
-                                  USING ( Patent_id ) 
-                                  LEFT JOIN `assignee_" + i.to_s + "`
-                                  USING ( Patent_id )
-                                  WHERE " + tempQuery + " GROUP BY Patent_id")
-    @size += @patentID[i].to_a.count
-  }
+  def searchTITLE
+    @patentID = Array.new
+    keywords = Array.new
+    keywords = params[:TITLE].split(%r{\s})
+    count = keywords.length
+    @size = 0
+    n = 1
 
-  render :layout => false
-end
+    tempQuery = "(`Title` LIKE '%" + keywords[0] + "%')"
+    while n < count do
+      tempQuery << "AND (`Title` LIKE '%" + keywords[n] + "%')"
+      n += 1
+    end
+
+    (2007..2008).each { |i|
+      @patentID[i] = @db.query("SELECT `Patent_id`, `Title`, `Name`, `Assignee`
+                                    FROM `patent_" + i.to_s + "`
+                                    LEFT JOIN `inventor_" + i.to_s + "`
+                                    USING ( Patent_id ) 
+                                    LEFT JOIN `assignee_" + i.to_s + "`
+                                    USING ( Patent_id )
+                                    WHERE " + tempQuery + " GROUP BY Patent_id")
+      @size += @patentID[i].to_a.count
+    }
+
+    render :layout => false
+  end
 
   private
   def connect_db

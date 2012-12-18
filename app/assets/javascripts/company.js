@@ -1,4 +1,4 @@
-$('a#companySubmit').popover();
+$('button#companySubmit').popover();
 
 
 $("#companySubmit").click(function(){

@@ -1,0 +1,38 @@
+.map-content{
+}
+
+.map-img{
+	height: 483px;
+	width: 644px;
+	background: url('/assets/map/mappane.png');
+	padding-left: 1px;
+}
+.map-grid{
+	position: relative;
+	float: left;
+	height: 19px;
+	width: 19px;
+	margin-left: 1.1px;
+	margin-top: 1.1px;
+}
+
+.map{
+	margin-left: 20px;
+}
+
+.map-info{
+	width: 250px;
+}
+
+
+.map-grid:hover{
+	background-color: rgba(200, 200, 200, 0.5);
+}
+
+.grid-first-row{
+	margin-top: 0.5px;
+}
+
+.grid-first-column{
+	margin-left: 0px;
+}
