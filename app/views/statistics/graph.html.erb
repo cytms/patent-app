@@ -4,7 +4,11 @@
 <% end %>
 
 <h3><i class="icon-bar-chart"></i> Statistics </h3>
-<blockquote><h4>Target Assignee : <span id="assigneeName" value="<%= @graph_assigneeName %>"><%= @graph_assigneeName.join ' ,' %></span></h4>
+<blockquote><h4>Target Assignee : <span id="assigneeName" value="<%= @graph_assigneeName %>"><%= @graph_assigneeName.join ' ;' %></span></h4>
+<form name="addCart" class="form-inline">
+	<button class="btn" id="addCartGroup" type="button"><i class="icon-shopping-cart"></i>Add All to My Patent Cart</button>
+</form>
+
 <h4>From : <span id="beginTime" value="<%= @graph_beginTime %>"><%= @graph_beginTime %></span>&nbsp&nbsp -> &nbsp To : <span id="endTime" value="<%= @graph_endTime %>"><%= @graph_endTime %></span></h4></blockquote>
 
 <div class="tabbable">
@@ -55,6 +59,7 @@
 	<%= javascript_include_tag "graph/patentList" %>
 	<%= javascript_include_tag "graph/countLineChart" %>
 	<%= javascript_include_tag "graph/IPCPieChart" %>
+	<%= javascript_include_tag "cart/add" %>
 
 	<%= javascript_include_tag "highcharts" %>
 	<%= javascript_include_tag "modules/exporting" %> 
