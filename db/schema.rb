@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(:version => 20121211165428) do
     t.text      "groups"
     t.integer   "user_id",    :null => false
     t.timestamp "created_at", :null => false
-    t.timestamp "updated_at", :null => false
+    t.datetime  "updated_at", :null => false
   end
 
   create_table "examiner_2007", :id => false, :force => true do |t|
