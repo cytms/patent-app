@@ -45,7 +45,6 @@
 			  	</div>
 			  </div>
 
-
 			  <div class="row input-timeInterval">
 			  	<div class="span12">
 			  		<% timezone = { '2003' => 2003, '2004' => 2004, '2005' => 2005, '2006' => 2006, '2007' => 2007 } %>
@@ -78,10 +77,26 @@
   	<p>Comparison of Multiple Assignees
   		<span class="label label-info">In progress...</span>
   	<p>
+  	<br />
+	<div class="accordion" id="accordion2">
+		<div class="accordion-group">
+			<div class="accordion-heading">
+				<div id="listCartPatent" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+					<i class="icon-shopping-cart"></i> select from my cart 
+				</div>
+			</div>
+			<div id="collapseTwo" class="accordion-body collapse">
+				<div id="listFrame" class="accordion-inner">
+				</div>
+			</div>
+		</div>
+	</div>
+
   </div>
 </div>
 
 
 <% content_for :javascript do %>
 	<%= javascript_include_tag "company" %>
+	<%= javascript_include_tag "cart/list" %>
 <% end %>

@@ -1,5 +1,6 @@
 class CartController < ApplicationController
   before_filter :connect_db , :authenticate_user!
+  layout "graph", :except => [:index]
   
   def index
     @query = @db.query("select * from `carts` where `user_id`=#{current_user.id}").to_a.first
@@ -20,9 +21,28 @@ class CartController < ApplicationController
     end
   end
 
+  def listPatent
+    @query = @db.query("select * from `carts` where `user_id`=#{current_user.id}").to_a.first
+    if @query["patents"].nil? == true then
+      @result_patents = nil
+    else
+      @tmp = @query["patents"].to_s.chomp("\\")
+      @result_patents = JSON.parse(@tmp)
+    end
+
+    #group
+    @query = @db.query("select * from `carts` where `user_id`=#{current_user.id}").to_a.first
+    if @query["groups"].nil? == true then
+      @result_groups = nil
+    else
+      @tmp = @query["groups"].to_s.chomp("\\")
+      @result_groups = JSON.parse(@tmp)
+    end
+  end
+
   def addPatent
   	#query current user's cart
-  	@db = Mysql2::Client.new(:host => '140.112.107.1', :username => 'chuya', :password=> '0514', :database => 'patentproject2012', :encoding => 'utf8')
+  	#@db = Mysql2::Client.new(:host => '140.112.107.1', :username => 'chuya', :password=> '0514', :database => 'patentproject2012', :encoding => 'utf8')
   	@userCart = @db.query("select `patents` from `carts` where `user_id`='#{current_user.id}'")   
     if @userCart.to_a.empty?
     	#create new cart for user
