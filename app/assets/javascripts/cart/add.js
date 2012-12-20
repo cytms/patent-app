@@ -13,8 +13,29 @@ $("#addCartPatent").live("click",function(){
 		success: function( results ){
 			console.log(results);
 			$("#addCartPatent").html('<i class="icon-shopping-cart"></i>Added into My Patent Cart')
-			//turn to unclickable?
-			
+			//turn to unclickable?		
+		},
+		error: function(){
+			console.log( 'addCart: something wrong happened' );
+		}
+	}).done(function(){
+		$('.loader').hide();
+	});
+});
+
+$("#addCartGroup").live("click",function(){
+	$.ajax({
+		type : "GET", 
+		url  : "/cart/addGroup",
+		data : { assignee : $("#assigneeName").text().split(";") },
+		dataType : 'json',
+		beforeSend: function(){
+			$('.loader').show();
+		}, 
+		success: function( results ){
+			console.log(results);
+			$("#addCartGroup").html('<i class="icon-shopping-cart"></i>Added into My Patent Cart')
+			//turn to unclickable?		
 		},
 		error: function(){
 			console.log( 'addCart: something wrong happened' );

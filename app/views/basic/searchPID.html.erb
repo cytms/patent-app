@@ -13,10 +13,13 @@
 
 <% (2003..2008).each do |i| %>
 	 <% if @patent[i].to_a.empty? == false %>
-	    <p><b>Patent ID: </b><%= @patent[i].to_a[0]["Patent_id"].to_s %></p>
-		<p><b>Title: </b><%= @patent[i].to_a[0]["Title"].to_s %></p>
+	    <p id="patentID"><b>Patent ID: </b><%= @patent[i].to_a[0]["Patent_id"].to_s %></p>
+		<p id="title"><b>Title: </b><%= @patent[i].to_a[0]["Title"].to_s %></p>
+
 		<p><b>Inventors: </b><%= @patent[i].to_a[0]["Name"].to_s %></p>
-		<p><b>Issued Date: </b><%= @patent[i].to_a[0]["Issued_date"].to_s %></p>
+		<p id="assignee"><b>Assignees: </b><%= @patent[i].to_a[0]["Assignee"].to_s%></p>
+
+		<p id="issued_date"><b>Issued Date: </b><%= @patent[i].to_a[0]["Issued_date"].to_s %></p>
 		<p><b>Filed Date: </b><%= @patent[i].to_a[0]["Filed_Date"].to_s %></p>
 		<hr>
 		<p><b>Abstract: </b><br><%= @patent[i].to_a[0]["Abstract"].to_s %></p>
