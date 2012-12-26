@@ -11,7 +11,7 @@
 	<button class="btn" id="addCartPatent" type="button"><i class="icon-shopping-cart"></i>Add to My Patent Cart</button>
 </form>
 
-<% (2003..2008).each do |i| %>
+<% (1990..2008).each do |i| %>
 	 <% if @patent[i].to_a.empty? == false %>
 	    <p id="patentID"><b>Patent ID: </b><%= @patent[i].to_a[0]["Patent_id"].to_s %></p>
 		<p id="title"><b>Title: </b><%= @patent[i].to_a[0]["Title"].to_s %></p>
