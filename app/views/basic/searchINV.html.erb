@@ -2,7 +2,7 @@
 
 <p>
 	<h4><%= @size %> results, Search by Inventor = "<%= params[:INV]%>"</h4><br>
-	<% (2007..2008).each { |i| %>
+	<% (1990..2008).each { |i| %>
      		<% if @patentID[i].to_a.empty? == false %>
      			<% @patentID[i].to_a.each do |p| %>
      				<span><b>Patent ID: </b><%= p['Patent_id'].to_s %></span><br>

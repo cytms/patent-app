@@ -57,7 +57,7 @@ $( "#submitASS" ).live("click",function(){
 	$.ajax({
 		type : "GET", 
 		url: "/basic/searchASS",
-		data: { ASS: $('input[name="companyIn"]').val() },
+		data : { companyIn : $("#companyIn").val() },
 		dataType: 'html',
 		beforeSend: function(){
 			$('.loader#basicASS').show();

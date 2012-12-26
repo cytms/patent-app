@@ -7,7 +7,7 @@ class BasicController < ApplicationController
 
   def patent
     @patent = Array.new
-    (2003..2008).each do |i|
+    (1990..2008).each do |i|
       @patent[i] = @db.query("SELECT `Patent_id`, `Title`, `Issued_date`, `Filed_Date`, `Abstract`, `Claims`, `Summary`, `Name`, `Assignee`
                                   FROM `patent_" + i.to_s + "`
                                   LEFT JOIN `inventor_" + i.to_s + "`
@@ -21,7 +21,7 @@ class BasicController < ApplicationController
   def searchPID
     #render :text => "OK!!!!!!!!!!!!"
     @patent = Array.new
-    (2003..2008).each { |i|
+    (1990..2008).each { |i|
       @patent[i] = @db.query("SELECT `Patent_id`, `Title`, `Issued_date`, `Filed_Date`, `Abstract`, `Claims`, `Summary`, `Name`, `Assignee`
                                   FROM `patent_" + i.to_s + "`
                                   LEFT JOIN `inventor_" + i.to_s + "`
@@ -43,7 +43,7 @@ class BasicController < ApplicationController
     count = temp.length
     @size = 0
 
-    (2007..2008).each { |i|
+    (1990..2008).each { |i|
     @patentID[i] = @db.query("SELECT `Patent_id`, `Title`
                                   FROM `inventor_" + i.to_s + "`
                                   LEFT JOIN `patent_" + i.to_s + "`
@@ -57,6 +57,17 @@ class BasicController < ApplicationController
   end
   
   def searchASS
+    @possibleNames = @db.query("select `name` from `abbreviations` where `abbreviation`='#{params[:companyIn]}'")   
+    @results = []
+    if @possibleNames.to_a.empty? #if the :companyIn is not an abbreviation of a company, search for similar names
+      @results << params[:companyIn]
+    else  
+      @results << params[:companyIn]
+      @possibleNames.each do |p|
+        @results << p['name']
+      end
+    end
+    #render :text => @results
   end
 
   def searchTITLE
@@ -73,7 +84,7 @@ class BasicController < ApplicationController
       n += 1
     end
 
-    (2007..2008).each { |i|
+    (1990..2008).each { |i|
       @patentID[i] = @db.query("SELECT `Patent_id`, `Title`, `Name`, `Assignee`
                                     FROM `patent_" + i.to_s + "`
                                     LEFT JOIN `inventor_" + i.to_s + "`
