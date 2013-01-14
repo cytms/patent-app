@@ -1,0 +1,53 @@
+<!-- index.html.erb -->
+<!-- cart/index -->
+<div class="page-header">
+	<h3><i class="icon-hand-up"></i> Cluster </h3>
+</div>
+<div class="btn-toolbar"> 
+	<div class="btn-group">
+	<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+	Move to
+	<span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu">
+	<!-- dropdown menu links -->
+		<li><a href="#">Cart 1</a></li>
+		<li><a href="#">Cart 2</a></li>
+	</ul></div>
+	<div class="btn-group">
+	<a class="btn btn-warning"> Delete </a></div>
+	<div class="btn-group"><a class="btn btn-info"> Recovery </a></div>
+</div>
+<div class="row">
+	<div id="ir-content" class="span8">piechart</div>
+	<div class="accordion span4" id="accordion2">
+		<div class="accordion-group">
+			<div class="accordion-heading">
+				<div id="listCartPatent" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+					<i class="icon-shopping-cart"></i> Cluster One 
+				</div>
+			</div>
+			<div id="collapseOne" class="accordion-body collapse">
+				<div id="listFrame" class="accordion-inner">
+					Hi
+				</div>
+			</div>
+		</div>
+		<div class="accordion-group">
+			<div class="accordion-heading">
+				<div id="listCartPatent" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+					<i class="icon-shopping-cart"></i> Cluster Two
+				</div>
+			</div>
+			<div id="collapseTwo" class="accordion-body collapse">
+				<div id="listFrame" class="accordion-inner">
+					hello
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+<% content_for :javascript do %>
+	<%= javascript_include_tag "cluster/chart" %>
+<% end %>
