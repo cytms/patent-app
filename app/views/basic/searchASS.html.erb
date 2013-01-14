@@ -1,0 +1,11 @@
+<h3><i class="icon-search"></i> Search Results </h3>
+
+<p>
+	<h4>Search for Assignee = "<%= params[:companyIn]%>"</h4><br>
+	<b>Possible assignee names you may be looking for:</b><br>
+	<% n = @results.count %>
+	<% for i in (0..n-1) do %>
+	<span><%= i+1 %>. <%= @results[i].to_s %></span><br>
+	<% end %>
+	
+</p>
