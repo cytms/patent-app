@@ -14,3 +14,5 @@ $(document).ready(function(){
 		console.log("ending");
 	});
 });
+$('div#listCartPatent').popover();
+// $('#listCartPatent').live.tooltip();

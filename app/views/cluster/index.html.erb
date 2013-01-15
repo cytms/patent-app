@@ -1,9 +1,9 @@
 <!-- index.html.erb -->
-<!-- cart/index -->
+<!-- cluster/index -->
 <div class="page-header">
 	<h3><i class="icon-hand-up"></i> Cluster </h3>
 </div>
-<div class="btn-toolbar"> 
+<!--<div class="btn-toolbar"> 
 	<div class="btn-group">
 	<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
 	Move to
@@ -11,43 +11,44 @@
 	</a>
 	<ul class="dropdown-menu">
 	<!-- dropdown menu links -->
-		<li><a href="#">Cart 1</a></li>
+<!--		<li><a href="#">Cart 1</a></li>
 		<li><a href="#">Cart 2</a></li>
 	</ul></div>
 	<div class="btn-group">
 	<a class="btn btn-warning"> Delete </a></div>
 	<div class="btn-group"><a class="btn btn-info"> Recovery </a></div>
-</div>
+</div>-->
+
+
 <div class="row">
 	<div id="ir-content" class="span8">piechart</div>
 	<div class="accordion span4" id="accordion2">
+		<% i = 1 %>
+		<% @result_list.each do |a| %>
 		<div class="accordion-group">
 			<div class="accordion-heading">
-				<div id="listCartPatent" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-					<i class="icon-shopping-cart"></i> Cluster One 
+				<div id="listCartPatent" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= i %>">
+					<i class="icon-caret-right"></i> <b>Cluster <%= i %> - </b><%= a[0] %>
 				</div>
 			</div>
-			<div id="collapseOne" class="accordion-body collapse">
+			<div id="collapse<%= i %>" class="accordion-body collapse">
 				<div id="listFrame" class="accordion-inner">
-					Hi
+					<% for j in (1..a.count-1) %>
+					<a href="http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO1&Sect2=HITOFF&d=PALL&p=1&u=%2Fnetahtml%2FPTO%2Fsrchnum.htm&r=1&f=G&l=50&s1=<%= a[j] %>.PN.&OS=PN/<%= a[j] %>&RS=PN/<%= a[j] %>"target="_blank"><%= a[j] %></a> </t>|</t>   
+					<% end %>
 				</div>
 			</div>
 		</div>
-		<div class="accordion-group">
-			<div class="accordion-heading">
-				<div id="listCartPatent" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-					<i class="icon-shopping-cart"></i> Cluster Two
-				</div>
-			</div>
-			<div id="collapseTwo" class="accordion-body collapse">
-				<div id="listFrame" class="accordion-inner">
-					hello
-				</div>
-			</div>
-
-		</div>
+		<% i = i + 1 %>
+		<% end %>
 	</div>
 </div>
+<script>
+$(function () {
+	$('#listCartPatent').popover();
+});	
+</script>
+
 <% content_for :javascript do %>
 	<%= javascript_include_tag "cluster/chart" %>
 <% end %>
